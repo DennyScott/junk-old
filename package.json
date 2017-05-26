@@ -52,7 +52,8 @@
   "dependencies": {
     "phaser-ce": "^2.7.10",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-draggable": "^2.2.6"
   },
   "homepage": "./",
   "main": "src/electron-starter.js",
