@@ -11,6 +11,11 @@
     margin-top: 2px;
 }
 
+.bar-icon {
+    cursor: pointer;
+    color: white;
+}
+
 .fa-close-thin:before {
 	content: '\00d7';
 }

@@ -7,9 +7,12 @@ import './window.css';
 
 export default class Window extends Component {
 
-  static state = {
-    showWindow: true,
-    fullScreen: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      showWindow: true,
+      fullscreen: props.isFullscreen || false,
+    }
   }
 
   closeWindow() {
@@ -17,11 +20,11 @@ export default class Window extends Component {
   }
 
   minimizeWindow() {
-
+    this.setState({showWindow: false});
   }
 
   maximizeWindow() {
-    this.setState({fullScreen: true})
+    this.setState({fullscreen: !this.state.fullscreen});
   }
 
   render() {
@@ -29,14 +32,24 @@ export default class Window extends Component {
   }
 
   defaultWindow() {
+    return this.state.fullscreen ? this.regularWindow() : this.draggableWindow();
+  }
+
+  regularWindow() {
+     return (
+      <div className={this.state.fullscreen ? 'fullscreen-window window' : 'regular-window window'}>
+        <WindowBar closeAction={() => this.closeWindow()} minimizeAction={() => this.minimizeWindow()} maximizeAction={() => this.maximizeWindow()} isDragable={!this.state.fullscreen}/>
+        <MenuBar text="I spent the last few days figuring out the password to Joel's Facebook account.  It's RonHextall27.  I've never seen someone actually give so much of a shit about some random hockey goalie to use it for a password, but hey, at least I have access to his account now!"/>
+        <MainArea />
+      </div>
+     );
+  }
+
+  draggableWindow() {
     return (
       <Draggable handle=".handle">
-          <div className={this.state.isFullscreen ? 'fullscreen-window' : 'regular-window window'}>
-            <WindowBar closeAction={() => this.closeWindow()} minimizeAction={() => this.minimizeWindow()} maximizeAction={() => this.maximizeWindow()} isDragable={!this.state.isFullscreen}/>
-            <MenuBar text="I spent the last few days figuring out the password to Joel's Facebook account.  It's RonHextall27.  I've never seen someone actually give so much of a shit about some random hockey goalie to use it for a password, but hey, at least I have access to his account now!"/>
-            <MainArea />
-          </div>
-        </Draggable>
-    )
+        {this.regularWindow()}
+      </Draggable>
+    );
   }
 }
