@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import {game} from './phaser/phaser';
 import Window from './components/Window/window';
+import Icon from './components/Desktop/Icon/icon';
+import MyComputerLogo from './my_computer.png';
 
 
 class App extends Component {
@@ -11,6 +13,7 @@ class App extends Component {
       <div className="App">
         <div id="phaser"></div>
         <Window />
+        <Icon img={MyComputerLogo} />
       </div>
     );
   }
