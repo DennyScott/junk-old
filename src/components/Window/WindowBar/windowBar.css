@@ -1,0 +1,16 @@
+.window-bar {
+  background-color: rgb(36, 93, 219);
+  height: 25px;
+  cursor: default;
+}
+
+.close-icon {
+    margin-right: 5px;
+    cursor: pointer;
+    color: white;
+    margin-top: 2px;
+}
+
+.fa-close-thin:before {
+	content: '\00d7';
+}

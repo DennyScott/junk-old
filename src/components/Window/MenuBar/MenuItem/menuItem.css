@@ -1,0 +1,13 @@
+.selected-menu-item {
+  background-color: darkslategray;
+  color: white;
+}
+
+.menu-item {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.key-letter {
+  text-decoration: underline;
+}
