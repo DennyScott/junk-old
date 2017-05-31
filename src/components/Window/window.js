@@ -39,8 +39,8 @@ export default class Window extends Component {
      return (
       <div className={this.state.fullscreen ? 'fullscreen-window window' : 'regular-window window'}>
         <WindowBar closeAction={() => this.closeWindow()} minimizeAction={() => this.minimizeWindow()} maximizeAction={() => this.maximizeWindow()} isDragable={!this.state.fullscreen}/>
-        <MenuBar text="I spent the last few days figuring out the password to Joel's Facebook account.  It's RonHextall27.  I've never seen someone actually give so much of a shit about some random hockey goalie to use it for a password, but hey, at least I have access to his account now!"/>
-        <MainArea />
+        <MenuBar />
+        <MainArea text="I spent the last few days figuring out the password to Joel's Facebook account.  It's RonHextall27.  I've never seen someone actually give so much of a shit about some random hockey goalie to use it for a password, but hey, at least I have access to his account now!"/>
       </div>
      );
   }

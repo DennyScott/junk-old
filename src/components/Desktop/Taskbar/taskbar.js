@@ -4,7 +4,12 @@ import './taskbar.css';
 
 const taskbar = props =>(
     <div className="taskbar">
-      <div className="taskbar-item" />
+        <div className="start-button" />
+        <div className="taskbar-item" />
+        <div className="taskbar-item" />
+        <div className="taskbar-item" />
+        <div className="taskbar-item" />
+        <div className="menu-tray pull-right" />
     </div>
 );
 

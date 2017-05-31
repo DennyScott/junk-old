@@ -9,7 +9,23 @@
     align-items: flex-end;
 }
 
-.taskbar-item {
+.start-button {
     width: 100px;
     height: 100%;
+    background-color: blue;
+}
+
+.taskbar-item {
+    max-width: 200px;
+    flex-basis: auto; /* default value */
+    flex-grow: 1;
+    height: 100%;
+    border: 2px solid black;
+    background-color: white;
+}
+
+.menu-tray {
+    height: 100%;
+    width: 200px;
+    background-color: grey;
 }
