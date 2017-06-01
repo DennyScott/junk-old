@@ -5,7 +5,8 @@ import rootReducer from './reducers/index';
 const loggerMiddleware = createLogger();
 
 const defaultState = {
-    programs: {},
+    programs: [],
+    openPrograms: {},
 };
 
 const enhancers = compose(

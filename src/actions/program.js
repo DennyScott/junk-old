@@ -1,17 +1,16 @@
-export const OPEN_PROGRAM = 'OPEN_PROGRAM';
-export const CLOSE_PROGRAM = 'CLOSE_PROGRAM';
+export const ADD_PROGRAM = 'ADD_PROGRAM';
+export const REMOVE_PROGRAM = 'REMOVE_PROGRAM';
 
-export function openProgram(id, program) {
+export function addProgram(program) {
     return {
-        type: OPEN_PROGRAM,
-        id,
+        type: ADD_PROGRAM,
         program
     }
 }
 
-export function closeProgram(id) {
+export function removeProgram(program) {
     return {
-        type: CLOSE_PROGRAM,
-        id
+        type: REMOVE_PROGRAM,
+        program
     }
 }
