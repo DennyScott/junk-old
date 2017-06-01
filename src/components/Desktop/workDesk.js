@@ -13,14 +13,12 @@ class WorkDesk extends Component {
     }
 
     render() {
-        console.log(this.props.openPrograms);
         return (
             <div className="work-desk">
                 <div className='windows-conatiner'>
-                    {Object.keys(this.props.openPrograms).map(program =>{
-                        console.log('hello')
-                        return (<Window />)
-                    })}
+                    {Object.keys(this.props.openPrograms).map(program =>
+                        <Window openWindow={this.props.openPrograms[program]}/>
+                    )}
                 </div>
                 <Desktop />
             </div>

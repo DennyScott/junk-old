@@ -18,6 +18,7 @@ export default class Window extends Component {
 
   static propTypes = {
     isFullscreen: PropTypes.bool,
+    openWindow: PropTypes.object.isRequired, 
   }
 
   closeWindow() {
