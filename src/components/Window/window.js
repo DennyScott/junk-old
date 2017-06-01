@@ -3,6 +3,7 @@ import WindowBar from './WindowBar/windowBar';
 import MenuBar from './MenuBar/menuBar';
 import MainArea from './MainArea/mainArea';
 import Draggable from 'react-draggable';
+import PropTypes from 'prop-types';
 import './window.css';
 
 export default class Window extends Component {
@@ -13,6 +14,10 @@ export default class Window extends Component {
       showWindow: true,
       fullscreen: props.isFullscreen || false,
     }
+  }
+
+  static propTypes = {
+    isFullscreen: PropTypes.bool,
   }
 
   closeWindow() {

@@ -7,8 +7,8 @@ import './desktop.css';
 
 const desktop = props =>(
     <div className="desktop">
-        <Window isFullscreen="false"/>
-        <Icon img={MyComputerLogo} />
+        <Window isFullscreen={false}/>
+        <Icon img={MyComputerLogo} appName="My Computer"/>
     </div>
 );
 
