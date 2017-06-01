@@ -1,17 +1,17 @@
-import pixi from 'pixi';
-import p2 from 'p2';
-import phaser from 'phaser';
+// import pixi from 'pixi';
+// import p2 from 'p2';
+// import phaser from 'phaser';
 
-let game = new phaser.Game(800, 600, phaser.AUTO, 'phaser', { preload: preload, create: create, update: update });
+// let game = new phaser.Game(800, 600, phaser.AUTO, 'phaser', { preload: preload, create: create, update: update });
 
-function preload() {
-}
+// function preload() {
+// }
 
-function create() {
-}
+// function create() {
+// }
 
-function update() {
+// function update() {
   
-}
+// }
 
-export {game};
+// export {game};
