@@ -6,8 +6,8 @@ import Draggable from 'react-draggable';
 
 const draggableIcon = props => (
       <Draggable handle=".handle">
-          <div className="desktop-icon handle">
-            <img src={props.img} width="32" height="32" draggable="false"/>
+          <div className="desktop-icon handle" onClick={props.onClick}>
+            <img src={props.img} width="42" height="42" draggable="false"/>
             <div className="app-name-line">
                 <span className="app-name">{props.appName}</span>
             </div>
