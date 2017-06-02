@@ -17,7 +17,7 @@ class Desktop extends Component {
         return (
             <div className="desktop">
                 {this.props.programs.map(program =>
-                    <Icon key={program.id}onDoubleClick={() => this.props.openProgram(program.id)} program={program}/>
+                    <Icon key={program.id} onDoubleClick={() => this.props.openProgram(program.id)} program={program}/>
                 )}                
             </div>
         );
