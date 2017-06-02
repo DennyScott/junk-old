@@ -7,17 +7,17 @@ import Draggable from 'react-draggable';
 const draggableIcon = props => (
       <Draggable handle=".handle">
           <div className="desktop-icon handle" onDoubleClick={props.onDoubleClick}>
-            <img src={props.img} width="42" height="42" draggable="false"/>
+            <img src={props.program.logo} width="42" height="42" draggable="false"/>
             <div className="app-name-line">
-                <span className="app-name">{props.appName}</span>
+                <span className="app-name">{props.program.name}</span>
             </div>
           </div>
         </Draggable>
     );
 
 draggableIcon.propTypes = {
-    img: PropTypes.string.isRequired,
-    appName: PropTypes.string.isRequired,
+    program: PropTypes.object.isRequired,
+    onDoubleClick: PropTypes.func.isRequired,
 }
 
 export default draggableIcon;

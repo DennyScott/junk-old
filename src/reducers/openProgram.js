@@ -1,11 +1,13 @@
 import { OPEN_PROGRAM, CLOSE_PROGRAM } from '../actions/openProgram';
 
-export const openPrograms = (state = {}, action) => {
+export const openPrograms = (state = [], action) => {
     switch(action.type) {
         case OPEN_PROGRAM:
-            return {...state, [action.id]: action.program};
+            return [...state, {id: action.id, windowId: action.windowId}];
         case CLOSE_PROGRAM:
-            return state.filter(e => e.id !== action.program.id);
+            return state.filter(openProgram =>
+                openProgram.id !== action.id || openProgram.windowId !== action.windowId
+            );
         default:
             return state;
     }

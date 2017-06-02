@@ -1,23 +1,16 @@
 import React, {Component} from 'react';
-import { openProgram } from '../../actions/openProgram';
+import { getOpenPrograms } from '../../selectors/openPrograms';
 import { connect } from 'react-redux';
-import Window from '../Window/window';
-import Icon from '../Desktop/Icon/icon';
+import ProgamWindow from '../Window/programWindow';
 import Desktop from './desktop';
-import MyComputerLogo from './my_computer.png';
 
 class WorkDesk extends Component {
-    myComputer = {
-        id: 'My_Computer',
-        logo: MyComputerLogo,
-    }
-
     render() {
         return (
             <div className="work-desk">
                 <div className='windows-conatiner'>
-                    {Object.keys(this.props.openPrograms).map(program =>
-                        <Window openWindow={this.props.openPrograms[program]}/>
+                    {this.props.openPrograms.map(program =>
+                        <ProgamWindow key={program.windowId} program={program}/>
                     )}
                 </div>
                 <Desktop />
@@ -27,10 +20,7 @@ class WorkDesk extends Component {
 }
 
 const mapStateToProps = state => ({
-    openPrograms: state.openPrograms
+    openPrograms: getOpenPrograms(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-    openProgram: newProgram => dispatch(openProgram(newProgram.id, newProgram))
-});
-export default connect(mapStateToProps, mapDispatchToProps)(WorkDesk);
+export default connect(mapStateToProps)(WorkDesk);

@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { closeProgram } from '../../actions/openProgram';
 import WindowBar from './WindowBar/windowBar';
 import MenuBar from './MenuBar/menuBar';
 import MainArea from './MainArea/mainArea';
 import Draggable from 'react-draggable';
 import PropTypes from 'prop-types';
-import './window.css';
+import './programWindow.css';
 
-export default class Window extends Component {
-
+class ProgramWindow extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showWindow: true,
-      fullscreen: props.isFullscreen || false,
-    }
+    this.state.fullscreen = props.isFullscreen ? true : false;
+  }
+  
+  state = {
+    showWindow: true,
   }
 
   static propTypes = {
     isFullscreen: PropTypes.bool,
-    openWindow: PropTypes.object.isRequired, 
+    program: PropTypes.object.isRequired, 
   }
 
   closeWindow() {
-    this.setState({showWindow: false});
+    this.props.closeProgram(this.props.program.id, this.props.program.windowId);
   }
 
   minimizeWindow() {
@@ -59,3 +61,11 @@ export default class Window extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  closeProgram: (programId, windowId) => dispatch(closeProgram(programId, windowId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramWindow);

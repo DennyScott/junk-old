@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { openProgram } from '../../actions/openProgram';
 import { connect } from 'react-redux';
-import Window from '../Window/window';
 import Icon from '../Desktop/Icon/icon';
 import MyComputerLogo from './my_computer.png';
 
@@ -11,22 +10,26 @@ class Desktop extends Component {
     myComputer = {
         id: 'My_Computer',
         logo: MyComputerLogo,
+        name: 'My Computer',
     }
 
     render() {
         return (
-            <div className="desktop">                
-                <Icon onDoubleClick={() => this.props.openProgram(this.myComputer)} img={MyComputerLogo} appName="My Computer"/>
+            <div className="desktop">
+                {this.props.programs.map(program =>
+                    <Icon key={program.id}onDoubleClick={() => this.props.openProgram(program.id)} program={program}/>
+                )}                
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    program: state.program
+    programs: state.programs
 });
 
 const mapDispatchToProps = dispatch => ({
-    openProgram: newProgram => dispatch(openProgram(newProgram.id, newProgram))
+    openProgram: programId => dispatch(openProgram(programId))
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Desktop);
