@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getOpenPrograms } from '../../selectors/openPrograms';
-import { openProgram } from '../../actions/openProgram';
+import { getOpenPrograms } from '../../../selectors/openPrograms';
+import { openProgram } from '../../../actions/openProgram';
 import Icon from '../../../components/Computer/Desktop/Icon/icon';
-import ProgamWindow from '../Window/programWindow';
+import ProgamWindow from './Window/programWindow';
 
 
 import './desktop.css';
@@ -32,7 +32,7 @@ class Desktop extends Component {
             <DesktopDiv>
                 <DesktopIcons> 
                     {this.props.programs.map(program =>
-                        <Icon key={program.id} onDoubleClick={() => this.props.openProgram(program.id)} name={programname} logo={program.logo}/>
+                        <Icon key={program.id} onDoubleClick={() => this.props.openProgram(program.id)} name={program.name} logo={program.logo}/>
                     )}
                 </DesktopIcons>
 

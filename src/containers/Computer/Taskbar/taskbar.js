@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getOpenPrograms } from '../../../selectors/openPrograms';
 import styled from 'styled-components';
 import { hideProgram } from '../../../actions/openProgram';
-import TaskbarItem from './TaskbarItem/taskbar-item';
+import TaskbarItem from '../../../components/Computer/Taskbar/TaskbarItem/taskbar-item';
 import MenuTray from '../../../components/Computer/Taskbar/MenuTray/menu-tray';
 
 
@@ -44,7 +44,7 @@ class Taskbar extends Component {
                 <StartButton>
                     Start
                 </StartButton>
-                {props.openPrograms.map(program => <TaskbarItem key={program.windowId} name={program.name} onClick={() => this.props.hideProgram(program.windowId, program.isShowing)}/>)}
+                {this.props.openPrograms.map(program => <TaskbarItem key={program.windowId} name={program.name} onClick={() => this.props.hideProgram(program.windowId, program.isShowing)}/>)}
                 <MenuTray />
             </TaskbarDiv>
         );
