@@ -57,7 +57,7 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   closeProgram: (programId, windowId) => dispatch(closeProgram(programId, windowId)),
-  hideProgram: windowId => dispatch(hideProgram(windowId)),
+  hideProgram: (windowId, isShowing) => dispatch(hideProgram(windowId, isShowing)),
   fullscreenProgram: (windowId, isFullscreen) => dispatch(fullscreenProgram(windowId, isFullscreen)),
 });
 

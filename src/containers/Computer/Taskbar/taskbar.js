@@ -44,7 +44,7 @@ class Taskbar extends Component {
                 <StartButton>
                     Start
                 </StartButton>
-                {this.props.openPrograms.map(program => <TaskbarItem key={program.windowId} name={program.name} onClick={() => this.props.hideProgram(program.windowId, program.isShowing)}/>)}
+                {this.props.openPrograms.map(program => <TaskbarItem key={program.windowId} name={program.name} onClick={() => this.props.hideProgram(program.windowId, !program.isShowing)}/>)}
                 <MenuTray />
             </TaskbarDiv>
         );

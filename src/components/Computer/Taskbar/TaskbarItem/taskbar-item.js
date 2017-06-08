@@ -5,7 +5,7 @@ import './taskbar-item.css';
 
 const taskbarItem = props =>(
     <div className="taskbar-item" onClick={() => props.onClick()}>
-        {this.props.name}
+        {props.name}
     </div>
 )
 
