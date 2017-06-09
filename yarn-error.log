@@ -68,6 +68,7 @@ npm manifest:
     "dependencies": {
       "bootstrap": "^4.0.0-alpha.6",
       "font-awesome": "^4.7.0",
+      "moment": "^2.18.1",
       "phaser-ce": "^2.7.10",
       "react": "^15.5.4",
       "react-addons-css-transition-group": "^15.5.2",
@@ -80,6 +81,7 @@ npm manifest:
       "reactstrap": "^4.6.2",
       "redux": "^3.6.0",
       "redux-logger": "^3.0.6",
+      "reselect": "^3.0.1",
       "styled-components": "^2.0.0"
     },
     "homepage": "./",
@@ -3767,6 +3769,10 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
+  moment@^2.18.1:
+    version "2.18.1"
+    resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+  
   ms@0.7.1:
     version "0.7.1"
     resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -4943,6 +4949,10 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   
+  reselect@^3.0.1:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
+  
   resolve-from@^1.0.0:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-1.0.1.tgz#26cbfe935d1aeeeabb29bc3fe5aeb01e93d44226"
@@ -5900,5 +5910,5 @@ Lockfile:
       fd-slicer "~1.0.1"
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\Travis.Scott\Documents\junk\node_modules\babel-template\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'C:\Users\Travis.Scott\Documents\junk\node_modules\autoprefixer\node_modules\.bin'
       at Error (native)

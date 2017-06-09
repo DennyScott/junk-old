@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './menuItem.css';
-import Draggable from 'react-draggable';
 
 export default class MenuItem extends Component {
 

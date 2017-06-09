@@ -21,9 +21,7 @@ const MainArea = styled.div`
 
 const mainArea = props => (
     <MainArea>
-        <NotepadText >
-            {props.text}
-        </NotepadText>
+        <NotepadText defaultValue={props.text} />
     </MainArea>
 )
 

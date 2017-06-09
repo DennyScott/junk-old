@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { closeProgram, hideProgram, fullscreenProgram } from '../../actions/openProgram';
-import WindowBar from './WindowBar/windowBar';
-import MenuBar from './MenuBar/menuBar';
-import MainArea from './MainArea/mainArea';
-import Draggable from 'react-draggable';
 import PropTypes from 'prop-types';
+import Draggable from 'react-draggable';
+import { closeProgram, hideProgram, fullscreenProgram } from '../../../../actions/openProgram';
+import WindowBar from '../../../../components/Computer/Desktop/Window/WindowBar/windowBar';
+import MenuBar from '../../../../components/Computer/Desktop/Window/MenuBar/menuBar';
+import MainArea from '../../../../components/Computer/Desktop/Window/MainArea/mainArea';
 import './programWindow.css';
 
 class ProgramWindow extends Component {
@@ -57,7 +57,7 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   closeProgram: (programId, windowId) => dispatch(closeProgram(programId, windowId)),
-  hideProgram: windowId => dispatch(hideProgram(windowId)),
+  hideProgram: (windowId, isShowing) => dispatch(hideProgram(windowId, isShowing)),
   fullscreenProgram: (windowId, isFullscreen) => dispatch(fullscreenProgram(windowId, isFullscreen)),
 });
 

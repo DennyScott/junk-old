@@ -18,16 +18,17 @@ const AppName = styled.div`
 const draggableIcon = props => (
       <Draggable handle=".handle">
           <DesktopIcon className="desktop-icon handle" onDoubleClick={props.onDoubleClick}>
-            <img src={props.program.logo} width="42" height="42" draggable="false"/>
+            <img src={props.logo} width="42" height="42" draggable="false"/>
             <AppName>
-                <span className="app-name">{props.program.name}</span>
+                <span className="app-name">{props.name}</span>
             </AppName>
           </DesktopIcon>
         </Draggable>
     );
 
 draggableIcon.propTypes = {
-    program: PropTypes.object.isRequired,
+    name: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
     onDoubleClick: PropTypes.func.isRequired,
 }
 
