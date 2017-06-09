@@ -28,7 +28,8 @@ const Taskbar = styled.div`
     align-items: flex-end;
 `
 
-const taskbar = props =>(
+const taskbar = props => (
+
     <Taskbar>
         <StartButton />
         {props.openPrograms.map(program => <TaskbarItem key={program.windowId} program={program}/>)}
