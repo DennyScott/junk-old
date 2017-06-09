@@ -1,16 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TaskbarItem from './TaskbarItem/taskbar-item';
-import './taskbar.css';
+import MenuTray from './MenuTray/menu-tray';
+import styled from 'styled-components';
 
-const taskbar = props =>(
-    <div className="taskbar">
-        <div className="start-button" />
+const StartButton = styled.div`
+    width: 100px;
+    height: 100%;
+    background-color: blue;
+`
 
+const MenuButton = styled.div`
+    height: 100%;
+    width: 200px;
+    background-color: lightgrey;
+    margin-left: auto;
+`
+
+const Taskbar = styled.div`
+    background-color: grey;
+    width: 100%;
+    height:50px;
+    position:absolute; 
+    bottom:0;
+    z-index:2;
+    display: flex;
+    align-items: flex-end;
+`
+
+const taskbar = props => (
+
+    <Taskbar>
+        <StartButton />
         {props.openPrograms.map(program => <TaskbarItem key={program.windowId} program={program}/>)}
-
-        <div className="menu-tray pull-right" />
-    </div>
+        <MenuTray />
+    </Taskbar>
 );
 
 taskbar.PropTypes = {
