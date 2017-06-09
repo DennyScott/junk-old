@@ -1,9 +1,0 @@
-.taskbar-item {
-    max-width: 200px;
-    flex-basis: auto; /* default value */
-    flex-grow: 1;
-    height: 100%;
-    border: 2px solid black;
-    background-color: white;
-    cursor: pointer;
-}

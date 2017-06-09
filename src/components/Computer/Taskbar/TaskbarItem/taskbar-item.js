@@ -1,12 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import './taskbar-item.css';
+import buttonImage from '../../../../assets/Computer/Taskbar/xp_btn.png';
+import icon from '../../../../assets/Computer/Desktop/Icon/notepad.png';
+
+const TaskbarItemWrapper = styled.div`
+    max-width: 148px;
+    flex-basis: auto; /* default value */
+    flex-grow: 1;
+    height: 25px;
+    background-image: url(${buttonImage});
+    background-repeat: no-repeat;
+    cursor: pointer;
+    color: white;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+`;
+
+const TaskbarItemIcon = styled.img`
+    height: 16px;
+    width: 16px;
+    margin: 0 5px;
+`;
+
+const TaskbarItemName = styled.span`
+    margin-top: 2px;
+`;
 
 const taskbarItem = props =>(
-    <div className="taskbar-item" onClick={() => props.onClick()}>
-        {props.name}
-    </div>
+    <TaskbarItemWrapper onClick={() => props.onClick()}>
+        <TaskbarItemIcon src={icon} />
+        <TaskbarItemName>{props.name}</TaskbarItemName>
+    </TaskbarItemWrapper>
 )
 
 taskbarItem.propTypes = {

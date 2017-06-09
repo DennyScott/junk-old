@@ -2,12 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
+import menuTray from '../../../../assets/Computer/Taskbar/menutray.png';
 
 const MenuTray = styled.div`
     height: 100%;
-    width: 200px;
-    background-color: lightgrey;
+    width: 100px;
+    background-image: url(${menuTray});
+    background-repeat: repeat-x;
+    border-left: 1px solid #444;
     margin-left: auto;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: lighter;
+    font-family: Arial;
 `
 
 const ComputerTime = styled.div`
