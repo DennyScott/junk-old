@@ -6,7 +6,9 @@ import './taskbar.css';
 const taskbar = props =>(
     <div className="taskbar">
         <div className="start-button" />
+
         {props.openPrograms.map(program => <TaskbarItem key={program.windowId} program={program}/>)}
+
         <div className="menu-tray pull-right" />
     </div>
 );
