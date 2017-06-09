@@ -1,11 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './mainArea.css';
+import styled from 'styled-components';
+
+const NotepadText = styled.textarea`
+    overflow: auto;
+    resize: none;
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+    border: none;
+`
+
+const MainArea = styled.div`
+    text-align: left;
+    font-family: 'Lucida Sans Regular';
+    font-size: 12px;
+    height: calc(100% - 50px);
+    width: 100%;
+`
 
 const mainArea = props => (
-    <div className="main-area">
-        {props.text}
-    </div>
+    <MainArea>
+        <NotepadText >
+            {props.text}
+        </NotepadText>
+    </MainArea>
 )
 
 mainArea.propTypes = {

@@ -8,6 +8,7 @@ const StartButton = styled.div`
     width: 100px;
     height: 100%;
     background-color: blue;
+    color:white;
 `
 
 const MenuButton = styled.div`
@@ -31,7 +32,9 @@ const Taskbar = styled.div`
 const taskbar = props => (
 
     <Taskbar>
-        <StartButton />
+        <StartButton>
+            Start
+        </StartButton>
         {props.openPrograms.map(program => <TaskbarItem key={program.windowId} program={program}/>)}
         <MenuTray />
     </Taskbar>
