@@ -13,7 +13,10 @@ const defaultState = {
         name: 'Notepad',
     }],
     openPrograms: [],
-    switches: {}
+    switches: {},
+    variables: {
+        PlayerName: 'Travis'
+    }
 };
 
 const enhancers = compose(
