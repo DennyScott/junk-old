@@ -5,13 +5,13 @@ import Draggable from 'react-draggable';
 import { closeProgram, hideProgram, fullscreenProgram } from '../../../../actions/openProgram';
 import WindowBar from '../../../../components/Computer/Desktop/Window/WindowBar/windowBar';
 import MenuBar from '../../../../components/Computer/Desktop/Window/MenuBar/menuBar';
-import MainArea from '../../../../components/Computer/Desktop/Window/MainArea/mainArea';
 import './programWindow.css';
 
 class ProgramWindow extends Component {
 
   static propTypes = {
-    program: PropTypes.object.isRequired, 
+    program: PropTypes.object.isRequired,
+    displayMenu: PropTypes.bool 
   }
 
   closeWindow() {
@@ -38,8 +38,8 @@ class ProgramWindow extends Component {
      return (
       <div className={this.props.program.isFullscreen ? 'fullscreen-window window' : 'regular-window window'}>
         <WindowBar closeAction={() => this.closeWindow()} minimizeAction={() => this.minimizeWindow()} maximizeAction={() => this.maximizeWindow()} isDragable={!this.props.program.isFullscreen}/>
-        <MenuBar />
-        <MainArea text="I spent the last few days figuring out the password to Joel's Facebook account.  It's RonHextall27.  I've never seen someone actually give so much of a shit about some random hockey goalie to use it for a password, but hey, at least I have access to his account now!"/>
+        {this.props.displayMenu ? <MenuBar /> : null}
+        {this.props.children}
       </div>
      );
   }

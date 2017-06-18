@@ -5,8 +5,8 @@ import { getOpenPrograms } from '../../../selectors/openPrograms';
 import { openProgram } from '../../../actions/openProgram';
 import { storeVariable } from '../../../actions/variable';
 import Icon from '../../../components/Computer/Desktop/Icon/icon';
-import ProgamWindow from './Window/programWindow';
-
+import Notepad from './Window/notepad';
+import NOTEPAD from '../../../programs';
 
 import './desktop.css';
 
@@ -33,14 +33,17 @@ class Desktop extends Component {
             <DesktopDiv>
                 <DesktopIcons> 
                     {this.props.programs.map(program =>
-                        <Icon key={program.id} onDoubleClick={() => this.props.openProgram(program.id)} name={program.name} logo={program.logo}/>
+                        <Icon key={program.id} onDoubleClick={() => this.props.openProgram(program.id, program.payload)} name={program.name} logo={program.logo}/>
                     )}
                 </DesktopIcons>
 
                 <OpenWindows>
-                    {this.props.openPrograms.map(program =>
-                        <ProgamWindow key={program.windowId} program={program}/>
-                    )}      
+                    {this.props.openPrograms.map(program => {
+                        switch(program.id) {
+                            case NOTEPAD:
+                                return <Notepad key={program.windowId} program={program} text={program.payload.text}/>;
+                        }
+                    })}      
                 </OpenWindows>          
             </DesktopDiv>
         );
@@ -53,7 +56,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    openProgram: programId => dispatch(openProgram(programId)),
+    openProgram: (programId, payload) => dispatch(openProgram(programId, payload)),
     createVariable: (variableName, payload) => dispatch(storeVariable(variableName, payload))
 });
 
