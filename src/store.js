@@ -14,9 +14,7 @@ const defaultState = {
     }],
     openPrograms: [],
     switches: {},
-    variables: {
-        PlayerName: 'Travis'
-    }
+    variables: {}
 };
 
 const enhancers = compose(

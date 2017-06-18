@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { getOpenPrograms } from '../../../selectors/openPrograms';
 import { openProgram } from '../../../actions/openProgram';
+import { storeVariable } from '../../../actions/variable';
 import Icon from '../../../components/Computer/Desktop/Icon/icon';
 import ProgamWindow from './Window/programWindow';
 
@@ -52,7 +53,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    openProgram: programId => dispatch(openProgram(programId))
+    openProgram: programId => dispatch(openProgram(programId)),
+    createVariable: (variableName, payload) => dispatch(storeVariable(variableName, payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Desktop);
