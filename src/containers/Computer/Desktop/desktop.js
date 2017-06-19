@@ -6,7 +6,8 @@ import { openProgram } from '../../../actions/openProgram';
 import { storeVariable } from '../../../actions/variable';
 import Icon from '../../../components/Computer/Desktop/Icon/icon';
 import Notepad from '../../../components/Computer/Desktop/Window/Programs/notepad';
-import { NOTEPAD } from '../../../programs';
+import Explorer from '../../../components/Computer/Desktop/Window/Programs/explorer';
+import { NOTEPAD, EXPLORER } from '../../../programs';
 
 import './desktop.css';
 
@@ -41,7 +42,9 @@ class Desktop extends Component {
                     {this.props.openPrograms.map(program => {
                         switch(program.id) {
                             case NOTEPAD:
-                                return <Notepad key={program.windowId} program={program} text={program.payload.text}/>;
+                                return <Notepad key={program.windowId} program={program} text={program.payload.text}/>
+                            case EXPLORER:
+                                return <Explorer key= {program.windowId} program={program}/>
                         }
                     })}      
                 </OpenWindows>          
