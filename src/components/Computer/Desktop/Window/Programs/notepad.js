@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProgramWindow from '../../../../containers/Computer/Desktop/Window/programWindow';
+import ProgramWindow from '../../../../../containers/Computer/Desktop/Window/programWindow';
 import styled from 'styled-components';
 
 const NotepadText = styled.textarea`

@@ -5,8 +5,8 @@ import { getOpenPrograms } from '../../../selectors/openPrograms';
 import { openProgram } from '../../../actions/openProgram';
 import { storeVariable } from '../../../actions/variable';
 import Icon from '../../../components/Computer/Desktop/Icon/icon';
-import Notepad from './Window/notepad';
-import NOTEPAD from '../../../programs';
+import Notepad from '../../../components/Computer/Desktop/Window/Programs/notepad';
+import { NOTEPAD } from '../../../programs';
 
 import './desktop.css';
 

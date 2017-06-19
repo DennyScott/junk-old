@@ -3,7 +3,7 @@ import {createLogger} from 'redux-logger';
 import rootReducer from './reducers/index';
 import MyComputerLogo from './assets/Computer/Desktop/Icon/my_computer.png';
 import NotepadLogo from './assets/Computer/Desktop/Icon/notepad.png';
-import NOTEPAD from './programs';
+import { NOTEPAD } from './programs';
 
 const loggerMiddleware = createLogger();
 
