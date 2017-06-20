@@ -21,7 +21,9 @@ const defaultState = {
         logo: MyComputerLogo,
         name: 'My Computer',
         payload: {
-            location: "C:/Users/Joel"
+            location: "C:",
+            previousLocations: [],
+            currentLocationIndex: 0,
         }
     }],
     openPrograms: [],
@@ -36,6 +38,14 @@ const defaultState = {
                     },
                     Downloads: {
                         someOtherRandomFolder: {}
+                    }
+                },
+                Ethan: {
+                    Documents: {
+                        hello: {}
+                    },
+                    Downloads: {
+                        goodbye: {}
                     }
                 }
             }

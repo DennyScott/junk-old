@@ -6,7 +6,7 @@ import { openProgram } from '../../../actions/openProgram';
 import { storeVariable } from '../../../actions/variable';
 import Icon from '../../../components/Computer/Desktop/Icon/icon';
 import Notepad from '../../../components/Computer/Desktop/Window/Programs/notepad';
-import Explorer from '../../../components/Computer/Desktop/Window/Programs/explorer';
+import Explorer from './Window/Programs/explorer';
 import { NOTEPAD, EXPLORER } from '../../../programs';
 
 import './desktop.css';
@@ -46,6 +46,7 @@ class Desktop extends Component {
                             case EXPLORER:
                                 return <Explorer key= {program.windowId} program={program}/>
                         }
+                        return null;
                     })}      
                 </OpenWindows>          
             </DesktopDiv>

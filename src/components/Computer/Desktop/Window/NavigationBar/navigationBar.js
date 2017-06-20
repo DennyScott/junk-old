@@ -20,18 +20,25 @@ const NavigationItem = styled.span`
 
 const navigationBar = props =>(
     <NavigationBarDiv>
-        <NavigationItem>
+        <NavigationItem onClick={() => props.backButtonClick()}>
             Back
         </NavigationItem>
 
-        <NavigationItem>
+        <NavigationItem onClick={() => props.forwardButtonClick()}>
             Forward
         </NavigationItem>
 
-        <NavigationItem>
+        <NavigationItem onClick={() => props.upButtonClick()}>
             Up
         </NavigationItem>
     </NavigationBarDiv>
 );
+
+navigationBar.propTypes = {
+    backButtonClick: PropTypes.func.isRequired,
+    forwardButtonClick: PropTypes.func.isRequired,
+    upButtonClick: PropTypes.func.isRequired,
+};
+
 
 export default navigationBar;
