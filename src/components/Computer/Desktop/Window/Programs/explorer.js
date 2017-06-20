@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import ProgramWindow from '../../../../../containers/Computer/Desktop/Window/programWindow';
 import styled from 'styled-components';
 import NavigationBar from '../NavigationBar/navigationBar';
+import FolderNavigator from '../../../../../containers/Computer/Desktop/Window/folderNavigator';
 
-const FolderListingArea = styled.div``
-
-const notepad = props => (
+const explorer = props => (
     <ProgramWindow program={props.program} displayMenu={true}>
         <NavigationBar />
-        <FolderListingArea >
-            FOLDERS APPEAR HERE
-        </FolderListingArea>
+        <FolderNavigator id={props.program.windowId} location={props.program.payload.location}/>
     </ProgramWindow>
 );
 
-notepad.propTypes = {
-    text: PropTypes.string
+explorer.propTypes = {
+    program: PropTypes.object.isRequired,
 };
 
-export default notepad;
+export default explorer;

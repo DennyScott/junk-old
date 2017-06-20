@@ -21,12 +21,26 @@ const defaultState = {
         logo: MyComputerLogo,
         name: 'My Computer',
         payload: {
-            location: "/"
+            location: "C:/Users/Joel"
         }
     }],
     openPrograms: [],
     switches: {},
-    variables: {}
+    variables: {},
+    drive: {
+        'C:': {
+            Users: {
+                Joel: {
+                    Documents: {
+                        someRandomFolder: {}
+                    },
+                    Downloads: {
+                        someOtherRandomFolder: {}
+                    }
+                }
+            }
+        } 
+    }
 };
 
 const enhancers = compose(
