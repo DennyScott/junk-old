@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { hideProgram } from '../../../actions/openProgram';
 import TaskbarItem from '../../../components/Computer/Taskbar/TaskbarItem/taskbar-item';
 import MenuTray from '../../../components/Computer/Taskbar/MenuTray/menu-tray';
+import backgroundImage from '../../../assets/Computer/Taskbar/xptaskbar.png';
+import startButton from '../../../assets/Computer/Taskbar/xpstart_btn.png';
 
 
 const StartButton = styled.div`
@@ -13,24 +15,18 @@ const StartButton = styled.div`
     height: 100%;
     background-color: blue;
     color:white;
-`
-
-const MenuButton = styled.div`
-    height: 100%;
-    width: 200px;
-    background-color: lightgrey;
-    margin-left: auto;
+    background-image: url(${startButton});
 `
 
 const TaskbarDiv = styled.div`
-    background-color: grey;
+    background-image: url(${backgroundImage});
+    background-repeat: repeat-x;
     width: 100%;
-    height:50px;
-    position:absolute; 
+    height:30px;
+    position:absolute;
     bottom:0;
     z-index:2;
     display: flex;
-    align-items: flex-end;
 `
 
 class Taskbar extends Component {
@@ -41,9 +37,7 @@ class Taskbar extends Component {
     render() {
         return (
             <TaskbarDiv>
-                <StartButton>
-                    Start
-                </StartButton>
+                <StartButton />
                 {this.props.openPrograms.map(program => <TaskbarItem key={program.windowId} name={program.name} onClick={() => this.props.hideProgram(program.windowId, !program.isShowing)}/>)}
                 <MenuTray />
             </TaskbarDiv>
