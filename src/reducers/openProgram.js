@@ -5,8 +5,8 @@ import { OPEN_FOLDER, UP_FOLDER, BACK_FOLDER, FORWARD_FOLDER } from '../actions/
 const CURRENT_WINDOW_ID = 0;
 
 
-const constructNewHistory = openProgram => 
-    [...(openProgram.payload.previousLocations.slice(0, openProgram.payload.currentLocationIndex)), openProgram.payload.location]
+const constructNewHistory = (openProgram, location) => 
+    [...(openProgram.payload.previousLocations.slice(0, openProgram.payload.currentLocationIndex + 1)), location]
 
 const updateStateOfOpenProgram = (state, windowId, updateFunc) => {
     return state.map(openProgram => 
@@ -18,8 +18,8 @@ const changeFolderLocation = (state, windowId, locationFunc, storeHistory = true
         ...openProgram, 
         payload: {
             ...(openProgram.payload), 
-            previousLocations: storeHistory ? constructNewHistory(openProgram) : openProgram.payload.previousLocations,
             currentLocationIndex: storeHistory ? openProgram.payload.currentLocationIndex + 1 : openProgram.payload.currentLocationIndex,
+            previousLocations: storeHistory ? constructNewHistory(openProgram, locationFunc(openProgram.payload.location, openProgram)) : openProgram.payload.previousLocations,
             location: locationFunc(openProgram.payload.location, openProgram) 
         } 
     }));
@@ -49,7 +49,8 @@ export const openPrograms = (state = [], action) => {
         case OPEN_FOLDER:
             return changeFolderLocation(state, action.windowId, folderLocation => folderLocation + '/' + action.folder);
         case UP_FOLDER:
-            return changeFolderLocation(state, action.windowId, folderLocation => folderLocation.substring(0, folderLocation.lastIndexOf('/')));
+            return changeFolderLocation(state, action.windowId, folderLocation => 
+                folderLocation.substring(0, (folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : folderLocation.length)));
         case BACK_FOLDER:
             return traverseHistory(state, action.windowId, openProgram => Math.max(openProgram.payload.currentLocationIndex - 1, 0));
         case FORWARD_FOLDER:

@@ -22,7 +22,7 @@ const defaultState = {
         name: 'My Computer',
         payload: {
             location: "C:",
-            previousLocations: [],
+            previousLocations: ["C:"],
             currentLocationIndex: 0,
         }
     }],
