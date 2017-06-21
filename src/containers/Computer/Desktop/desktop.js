@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getOpenPrograms } from '../../../selectors/openPrograms';
+import { getOpenPrograms, getExplorerOpenPrograms, getNotepadOpenPrograms } from '../../../selectors/openPrograms';
 import { openProgram } from '../../../actions/openProgram';
 import { storeVariable } from '../../../actions/variable';
 import Icon from '../../../components/Computer/Desktop/Icon/icon';
@@ -39,15 +39,8 @@ class Desktop extends Component {
                 </DesktopIcons>
 
                 <OpenWindows>
-                    {this.props.openPrograms.map(program => {
-                        switch(program.id) {
-                            case NOTEPAD:
-                                return <Notepad key={program.windowId} program={program} text={program.payload.text}/>
-                            case EXPLORER:
-                                return <Explorer key= {program.windowId} program={program}/>
-                        }
-                        return null;
-                    })}      
+                    {this.props.notepadOpenPrograms.map(program => <Notepad key={program.windowId} program={program} text={program.payload.text}/>)}
+                    {this.props.explorerOpenPrograms.map(program => <Explorer key= {program.windowId} program={program}/>)}    
                 </OpenWindows>          
             </DesktopDiv>
         );
@@ -56,7 +49,8 @@ class Desktop extends Component {
 
 const mapStateToProps = state => ({
     programs: state.programs,
-    openPrograms: getOpenPrograms(state),
+    notepadOpenPrograms: getNotepadOpenPrograms(state),
+    explorerOpenPrograms: getExplorerOpenPrograms(state),
 });
 
 const mapDispatchToProps = dispatch => ({

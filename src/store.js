@@ -31,21 +31,43 @@ const defaultState = {
     variables: {},
     drive: {
         'C:': {
-            Users: {
-                Joel: {
-                    Documents: {
-                        someRandomFolder: {}
-                    },
-                    Downloads: {
-                        someOtherRandomFolder: {}
-                    }
-                },
-                Ethan: {
-                    Documents: {
-                        hello: {}
-                    },
-                    Downloads: {
-                        goodbye: {}
+            folders: {
+                Users: {
+                    folders: {
+                        Joel: {
+                            folders: {
+                                Documents: {
+                                    folders: {
+                                        someRandomFolder: {
+                                            folders: {
+                                                youMadeItIn: {
+                                                    password: 'hello'
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                Downloads: {
+                                    folders: {
+                                        someOtherRandomFolder: {}
+                                    }
+                                }
+                            }
+                        },
+                        Ethan: {
+                            folders: {
+                                Documents: {
+                                    folders: {
+                                        hello: {}
+                                    }
+                                },
+                                Downloads: {
+                                    folders: {
+                                        goodbye: {}
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
