@@ -1,4 +1,5 @@
 import {createStore, compose, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk'
 import {createLogger} from 'redux-logger';
 import rootReducer from './reducers/index';
 import MyComputerLogo from './assets/Computer/Desktop/Icon/my_computer.png';
@@ -29,17 +30,29 @@ const defaultState = {
     openPrograms: [],
     switches: {},
     variables: {},
+    user: 'Ethan',
     drive: {
         'C:': {
-            folders: {
+            contents: {
                 Users: {
-                    folders: {
+                    contents: {
                         Joel: {
-                            folders: {
+                            contents: {
+                                Desktop: {
+                                    contents: {
+                                        "My Computer": {
+                                            logo: MyComputerLogo
+                                        },
+                                        myTxtFile : {
+                                            filetype: 'Notepad',
+                                            logo: NotepadLogo
+                                        }
+                                    },
+                                },
                                 Documents: {
-                                    folders: {
+                                    contents: {
                                         someRandomFolder: {
-                                            folders: {
+                                            contents: {
                                                 youMadeItIn: {
                                                     password: 'hello'
                                                 }
@@ -48,21 +61,21 @@ const defaultState = {
                                     }
                                 },
                                 Downloads: {
-                                    folders: {
+                                    contents: {
                                         someOtherRandomFolder: {}
                                     }
                                 }
                             }
                         },
                         Ethan: {
-                            folders: {
+                            contents: {
                                 Documents: {
-                                    folders: {
+                                    contents: {
                                         hello: {}
                                     }
                                 },
                                 Downloads: {
-                                    folders: {
+                                    contents: {
                                         goodbye: {}
                                     }
                                 }
@@ -80,6 +93,6 @@ const enhancers = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-const store = createStore(rootReducer, defaultState, enhancers);
+const store = createStore(rootReducer, defaultState, enhancers, applyMiddleware(thunk));
 
 export default store;

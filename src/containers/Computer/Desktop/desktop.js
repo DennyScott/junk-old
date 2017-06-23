@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getOpenPrograms, getExplorerOpenPrograms, getNotepadOpenPrograms } from '../../../selectors/openPrograms';
+import { getOpenPrograms, getNotepadOpenPrograms } from '../../../selectors/openPrograms';
+import { getExplorerOpenProgramsWithContents, getDesktopContents } from '../../../selectors/drive';
 import { openProgram } from '../../../actions/openProgram';
 import { storeVariable } from '../../../actions/variable';
 import Icon from '../../../components/Computer/Desktop/Icon/icon';
@@ -48,9 +49,10 @@ class Desktop extends Component {
 }
 
 const mapStateToProps = state => ({
+    contents: getDesktopContents(state),
     programs: state.programs,
     notepadOpenPrograms: getNotepadOpenPrograms(state),
-    explorerOpenPrograms: getExplorerOpenPrograms(state),
+    explorerOpenPrograms: getExplorerOpenProgramsWithContents(state),
 });
 
 const mapDispatchToProps = dispatch => ({
