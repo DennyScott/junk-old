@@ -1,9 +1,11 @@
 import { OPEN_PROGRAM, CLOSE_PROGRAM, HIDE_PROGRAM, FULLSCREEN_PROGRAM } from '../actions/openProgram';
 
+const CURRENT_WINDOW_ID = 0;
+
 export const openPrograms = (state = [], action) => {
     switch(action.type) {
         case OPEN_PROGRAM:
-            return [...state, {id: action.id, windowId: action.windowId, isShowing:true, isFullscreen:false}];
+            return [...state, {id: action.id, windowId: CURRENT_WINDOW_ID++, isShowing:true, isFullscreen:false, payload: action.payload}];
         case CLOSE_PROGRAM:
             return state.filter(openProgram =>
                 openProgram.id !== action.id || openProgram.windowId !== action.windowId

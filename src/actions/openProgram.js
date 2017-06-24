@@ -3,13 +3,11 @@ export const CLOSE_PROGRAM = 'CLOSE_PROGRAM';
 export const HIDE_PROGRAM = 'HIDE_PROGRAM';
 export const FULLSCREEN_PROGRAM = 'FULLSCREEN_PROGRAM';
 
-const currentWindowId = 0;
-
-export function openProgram(id) {
+export function openProgram(id, payload) {
     return {
         type: OPEN_PROGRAM,
         id,
-        windowId: currentWindowId++,
+        payload
     }
 }
 
