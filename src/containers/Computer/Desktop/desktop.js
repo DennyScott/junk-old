@@ -34,8 +34,8 @@ class Desktop extends Component {
         return (
             <DesktopDiv>
                 <DesktopIcons> 
-                    {this.props.programs.map(program =>
-                        <Icon key={program.id} onDoubleClick={() => this.props.openProgram(program.id, program.payload)} name={program.name} logo={program.logo}/>
+                    {Object.keys(this.props.contents).map(key =>
+                        <Icon key={key} onDoubleClick={() => this.props.openProgram(this.props.contents[key])} name={key} logo={this.props.contents[key].logo}/>
                     )}
                 </DesktopIcons>
 
@@ -56,7 +56,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    openProgram: (programId, payload) => dispatch(openProgram(programId, payload)),
+    openProgram: program => dispatch(openProgram(program.filetype, program.payload)),
     createVariable: (variableName, payload) => dispatch(storeVariable(variableName, payload))
 });
 

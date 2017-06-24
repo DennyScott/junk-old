@@ -6,11 +6,12 @@ const getDrive = state => state.drive;
 const getUser = state => state.user;
 
 const getLocation = (drive, location) => {
-        let currentLocation = drive;
-        const locationArray = location.split('/');
-        locationArray.forEach(e => currentLocation = currentLocation.contents[e]);
-        return currentLocation;
+    let currentLocation = drive;
+    const locationArray = location.split('/');
+    locationArray.forEach(e => currentLocation = currentLocation.contents[e]);
+    return currentLocation;
 }
+
 export const getExplorerOpenProgramsWithContents = createSelector(
   [ getDrive, getExplorerOpenPrograms ],
   (drive, explorers) => 
@@ -22,5 +23,5 @@ export const getExplorerOpenProgramsWithContents = createSelector(
 
 export const getDesktopContents = createSelector(
     [ getDrive, getUser ],
-    (drive, user) => getLocation(drive, 'C:/Users/${user}').contents
+    (drive, user) => getLocation(drive, `C:/Users/${user}/Desktop`).contents
 );

@@ -14,77 +14,101 @@ const defaultState = {
         logo: NotepadLogo,
         name: 'Notepad',
         payload: {
-            text: "I spent the last few days figuring out the password to Joel's Facebook account.  It's RonHextall27.  I've never seen someone actually give so much of a shit about some random hockey goalie to use it for a password, but hey, at least I have access to his account now!"
+            text: "Empty"
         }
     },
     {
         id: EXPLORER,
         logo: MyComputerLogo,
         name: 'My Computer',
-        payload: {
-            location: "C:",
-            previousLocations: ["C:"],
-            currentLocationIndex: 0,
-        }
     }],
     openPrograms: [],
     switches: {},
     variables: {},
-    user: 'Ethan',
+    user: 'Joel',
     drive: {
-        'C:': {
-            contents: {
-                Users: {
-                    contents: {
-                        Joel: {
-                            contents: {
-                                Desktop: {
-                                    contents: {
-                                        "My Computer": {
-                                            logo: MyComputerLogo
+        filetype: EXPLORER,
+        contents: {
+            'C:': {
+                filetype: EXPLORER,
+                contents: {
+                    Users: {
+                        filetype: EXPLORER,
+                        contents: {
+                            Joel: {
+                                filetype: EXPLORER,
+                                contents: {
+                                    Desktop: {
+                                        filetype: EXPLORER,
+                                        contents: {
+                                            "My Computer": {
+                                                filetype: EXPLORER,
+                                                logo: MyComputerLogo,
+                                                payload: {
+                                                    location: "C:",
+                                                    previousLocations: ["C:"],
+                                                    currentLocationIndex: 0,
+                                                }
+                                            },
+                                            myTxtFile : {
+                                                filetype: NOTEPAD,
+                                                logo: NotepadLogo,
+                                                payload: {
+                                                    text: "I spent the last few days figuring out the password to Joel's Facebook account.  It's RonHextall27.  I've never seen someone actually give so much of a shit about some random hockey goalie to use it for a password, but hey, at least I have access to his account now!",
+                                                }
+                                            }
                                         },
-                                        myTxtFile : {
-                                            filetype: 'Notepad',
-                                            logo: NotepadLogo
-                                        }
                                     },
-                                },
-                                Documents: {
-                                    contents: {
-                                        someRandomFolder: {
-                                            contents: {
-                                                youMadeItIn: {
-                                                    password: 'hello'
+                                    Documents: {
+                                        filetype: EXPLORER,
+                                        contents: {
+                                            someRandomFolder: {
+                                                filetype: EXPLORER,
+                                                contents: {
+                                                    youMadeItIn: {
+                                                        filetype: EXPLORER,
+                                                        password: 'hello'
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
-                                },
-                                Downloads: {
-                                    contents: {
-                                        someOtherRandomFolder: {}
+                                    },
+                                    Downloads: {
+                                        filetype: EXPLORER,
+                                        contents: {
+                                            someOtherRandomFolder: {
+                                                filetype: EXPLORER,
+                                            }
+                                        }
                                     }
                                 }
-                            }
-                        },
-                        Ethan: {
-                            contents: {
-                                Documents: {
-                                    contents: {
-                                        hello: {}
-                                    }
-                                },
-                                Downloads: {
-                                    contents: {
-                                        goodbye: {}
+                            },
+                            Ethan: {
+                                filetype: EXPLORER,
+                                contents: {
+                                    Documents: {
+                                        filetype: EXPLORER,
+                                        contents: {
+                                            hello: {
+                                                filetype: EXPLORER,
+                                            }
+                                        }
+                                    },
+                                    Downloads: {
+                                        filetype: EXPLORER,
+                                        contents: {
+                                            goodbye: {
+                                                filetype: EXPLORER,
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
-        } 
+            } 
+        }
     }
 };
 
