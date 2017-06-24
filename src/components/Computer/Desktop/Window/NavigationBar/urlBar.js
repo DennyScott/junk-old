@@ -6,7 +6,7 @@ const UrlDiv = styled.div``;
 
 const urlBar = props =>(
     <UrlDiv>
-        <input type="text" value={this.props.url} />
+        <input type="text" value={props.url} />
     </UrlDiv>
 );
 

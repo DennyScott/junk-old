@@ -47,7 +47,7 @@ const traverseHistory =  (state, windowId, indexUpdateFunc) => {
 export const openPrograms = (state = [], action) => {
     switch(action.type) {
         case OPEN_FOLDER:
-            return changeFolderLocation(state, action.windowId, folderLocation => folderLocation + '/' + action.folder);
+            return changeFolderLocation(state, action.windowId, folderLocation => `${folderLocation}/${action.folder}`);
         case UP_FOLDER:
             return changeFolderLocation(state, action.windowId, folderLocation => 
                 folderLocation.substring(0, (folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : folderLocation.length)));

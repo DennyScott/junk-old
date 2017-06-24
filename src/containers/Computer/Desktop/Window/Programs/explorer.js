@@ -21,7 +21,7 @@ class Explorer extends Component {
 
     render() {
         return (
-             <ProgramWindow program={this.props.program} displayMenu={true}>
+             <ProgramWindow program={this.props.program} displayMenu>
                 <NavigationBar upButtonClick={() => this.props.upFolder(this.props.program.windowId)} backButtonClick= {() => this.props.backFolder(this.props.program.windowId)} forwardButtonClick={() => this.props.forwardFolder(this.props.program.windowId)}/>
                 {Object.keys(this.getLocation()).map((key) => (
                     <div key={key} onClick={() => this.props.openFolder(this.props.program.windowId, key) }>{key}</div>

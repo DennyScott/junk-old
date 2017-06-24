@@ -46,7 +46,6 @@ class Desktop extends Component {
                             case EXPLORER:
                                 return <Explorer key= {program.windowId} program={program}/>
                         }
-                        return null;
                     })}      
                 </OpenWindows>          
             </DesktopDiv>
