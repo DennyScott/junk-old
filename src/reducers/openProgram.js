@@ -39,7 +39,7 @@ const traverseHistory =  (state, windowId, indexUpdateFunc) => {
     return changeFolderLocation(
         updateCurrentHistoryIndex(state, windowId, indexUpdateFunc),
         windowId,
-        (folderLocation, openProgram) => openProgram.payload.previousLocations[openProgram.payload.currentLocationIndex] || openProgram.payload.location,
+        (folderLocation, openProgram) => openProgram.payload.previousLocations[openProgram.payload.currentLocationIndex],
         false
     );
 }
@@ -47,10 +47,10 @@ const traverseHistory =  (state, windowId, indexUpdateFunc) => {
 export const openPrograms = (state = [], action) => {
     switch(action.type) {
         case OPEN_FOLDER:
-            return changeFolderLocation(state, action.windowId, folderLocation => `${folderLocation}/${action.folder}`);
+            return changeFolderLocation(state, action.windowId, folderLocation => folderLocation.length > 0 ? `${folderLocation}/${action.folder}` : `${action.folder}`);
         case UP_FOLDER:
             return changeFolderLocation(state, action.windowId, folderLocation => 
-                folderLocation.substring(0, (folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : folderLocation.length)));
+                folderLocation.substring(0, (folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : 0)));
         case BACK_FOLDER:
             return traverseHistory(state, action.windowId, openProgram => Math.max(openProgram.payload.currentLocationIndex - 1, 0));
         case FORWARD_FOLDER:

@@ -8,7 +8,8 @@ const getUser = state => state.user;
 const getLocation = (drive, location) => {
     let currentLocation = drive;
     const locationArray = location.split('/');
-    locationArray.forEach(e => currentLocation = currentLocation.contents[e]);
+    locationArray.forEach(e => currentLocation = currentLocation.contents[e] || currentLocation);
+    console.log(currentLocation);
     return currentLocation;
 }
 

@@ -7,6 +7,7 @@ import NotepadLogo from './assets/Computer/Desktop/Icon/notepad.png';
 import { NOTEPAD, EXPLORER } from './programs';
 
 const loggerMiddleware = createLogger();
+const FOLDER = "FOLDER";
 
 const defaultState = {
     programs: [{
@@ -14,32 +15,37 @@ const defaultState = {
         logo: NotepadLogo,
         name: 'Notepad',
         payload: {
-            text: "Empty"
+            text: "",
         }
     },
     {
         id: EXPLORER,
         logo: MyComputerLogo,
         name: 'My Computer',
+        payload: {
+            location: "",
+            previousLocations: [""],
+            currentLocationIndex: 0,
+        }
     }],
     openPrograms: [],
     switches: {},
     variables: {},
     user: 'Joel',
     drive: {
-        filetype: EXPLORER,
+        filetype: FOLDER,
         contents: {
             'C:': {
-                filetype: EXPLORER,
+                filetype: FOLDER,
                 contents: {
                     Users: {
-                        filetype: EXPLORER,
+                        filetype: FOLDER,
                         contents: {
                             Joel: {
-                                filetype: EXPLORER,
+                                filetype: FOLDER,
                                 contents: {
                                     Desktop: {
-                                        filetype: EXPLORER,
+                                        filetype: FOLDER,
                                         contents: {
                                             "My Computer": {
                                                 filetype: EXPLORER,
@@ -60,13 +66,13 @@ const defaultState = {
                                         },
                                     },
                                     Documents: {
-                                        filetype: EXPLORER,
+                                        filetype: FOLDER,
                                         contents: {
                                             someRandomFolder: {
-                                                filetype: EXPLORER,
+                                                filetype: FOLDER,
                                                 contents: {
                                                     youMadeItIn: {
-                                                        filetype: EXPLORER,
+                                                        filetype: FOLDER,
                                                         password: 'hello'
                                                     }
                                                 }
@@ -74,31 +80,31 @@ const defaultState = {
                                         }
                                     },
                                     Downloads: {
-                                        filetype: EXPLORER,
+                                        filetype: FOLDER,
                                         contents: {
                                             someOtherRandomFolder: {
-                                                filetype: EXPLORER,
+                                                filetype: FOLDER,
                                             }
                                         }
                                     }
                                 }
                             },
                             Ethan: {
-                                filetype: EXPLORER,
+                                filetype: FOLDER,
                                 contents: {
                                     Documents: {
-                                        filetype: EXPLORER,
+                                        filetype: FOLDER,
                                         contents: {
                                             hello: {
-                                                filetype: EXPLORER,
+                                                filetype: FOLDER,
                                             }
                                         }
                                     },
                                     Downloads: {
-                                        filetype: EXPLORER,
+                                        filetype: FOLDER,
                                         contents: {
                                             goodbye: {
-                                                filetype: EXPLORER,
+                                                filetype: FOLDER,
                                             }
                                         }
                                     }
@@ -113,10 +119,10 @@ const defaultState = {
 };
 
 const enhancers = compose(
-    applyMiddleware(loggerMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    applyMiddleware(thunk, loggerMiddleware),
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
 );
 
-const store = createStore(rootReducer, defaultState, enhancers, applyMiddleware(thunk));
+const store = createStore(rootReducer, defaultState, enhancers);
 
 export default store;
