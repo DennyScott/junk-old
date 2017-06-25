@@ -6,9 +6,9 @@ const getOpenProgramObjects = state => state.openPrograms;
 export const getOpenPrograms = createSelector(
   [ getPrograms, getOpenProgramObjects ],
   (programs, openPrograms) => 
-    openPrograms.map(openProgram => 
-      Object.assign(openProgram, programs.find(e => 
-        e.id === openProgram.id)
-      )
-    )
-)
+    openPrograms.map(openProgram => ({
+      ...(programs.find(e => 
+      e.id === openProgram.id)),
+      ...openProgram
+    }))
+);
