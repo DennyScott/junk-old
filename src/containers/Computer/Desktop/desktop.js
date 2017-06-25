@@ -56,7 +56,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    openProgram: program => dispatch(openProgram(program.filetype, program.payload)),
+    openProgram: program => dispatch(openProgram(program)),
     createVariable: (variableName, payload) => dispatch(storeVariable(variableName, payload))
 });
 
