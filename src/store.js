@@ -4,7 +4,7 @@ import {createLogger} from 'redux-logger';
 import rootReducer from './reducers/index';
 import MyComputerLogo from './assets/Computer/Desktop/Icon/my_computer.png';
 import NotepadLogo from './assets/Computer/Desktop/Icon/notepad.png';
-import { NOTEPAD, EXPLORER } from './programs';
+import { NOTEPAD, EXPLORER, PASSWORD_DIALOG } from './programs';
 
 const loggerMiddleware = createLogger();
 const FOLDER = "FOLDER";
@@ -26,6 +26,14 @@ const defaultState = {
             location: "",
             previousLocations: [""],
             currentLocationIndex: 0,
+        }
+    },
+    {
+        id: PASSWORD_DIALOG,
+        name: 'Password',
+        payload: {
+            needPassword: '',
+            successCallback: () => {}
         }
     }],
     openPrograms: [],
@@ -73,7 +81,8 @@ const defaultState = {
                                                 contents: {
                                                     youMadeItIn: {
                                                         filetype: FOLDER,
-                                                        password: 'hello'
+                                                        password: 'hello',
+                                                        contents: {},
                                                     }
                                                 }
                                             }
@@ -84,6 +93,7 @@ const defaultState = {
                                         contents: {
                                             someOtherRandomFolder: {
                                                 filetype: FOLDER,
+                                                contents: {},
                                             }
                                         }
                                     }
@@ -97,6 +107,7 @@ const defaultState = {
                                         contents: {
                                             hello: {
                                                 filetype: FOLDER,
+                                                contents: {},
                                             }
                                         }
                                     },
@@ -105,6 +116,7 @@ const defaultState = {
                                         contents: {
                                             goodbye: {
                                                 filetype: FOLDER,
+                                                contents: {},
                                             }
                                         }
                                     }

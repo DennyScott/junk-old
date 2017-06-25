@@ -15,7 +15,7 @@ class ProgramWindow extends Component {
   }
 
   closeWindow() {
-    this.props.closeProgram(this.props.program.id, this.props.program.windowId);
+    this.props.closeProgram(this.props.program.windowId);
   }
 
   minimizeWindow() {
@@ -56,7 +56,7 @@ class ProgramWindow extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  closeProgram: (programId, windowId) => dispatch(closeProgram(programId, windowId)),
+  closeProgram: windowId => dispatch(closeProgram(windowId)),
   hideProgram: (windowId, isShowing) => dispatch(hideProgram(windowId, isShowing)),
   fullscreenProgram: (windowId, isFullscreen) => dispatch(fullscreenProgram(windowId, isFullscreen)),
 });

@@ -61,7 +61,7 @@ export const openPrograms = (state = [], action) => {
         case OPEN_PROGRAM:
             return [...state, {id: action.id, windowId: CURRENT_WINDOW_ID++, isShowing:true, isFullscreen:false, payload: action.payload}];
         case CLOSE_PROGRAM:
-            return state.filter(openProgram => openProgram.id !== action.id || openProgram.windowId !== action.windowId);
+            return state.filter(openProgram => openProgram.windowId !== action.windowId);
         default:
             return state;
     }

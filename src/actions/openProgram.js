@@ -1,4 +1,5 @@
 import store from '../store';
+import { PASSWORD_DIALOG } from '../programs';
 
 export const OPEN_PROGRAM = 'OPEN_PROGRAM';
 export const CLOSE_PROGRAM = 'CLOSE_PROGRAM';
@@ -45,12 +46,6 @@ export function upFolder(windowId) {
         );
 }
 
-export function openFolder(windowId, folder) {
-    return dispatch => {
-        console.log(folder);
-        dispatch(openNewFolder(windowId, folder));
-    }
-}
 export function openNewProgram(id, payload) {
     return {
         type: OPEN_PROGRAM,
@@ -59,10 +54,9 @@ export function openNewProgram(id, payload) {
     }
 }
 
-export function closeProgram(id, windowId) {
+export function closeProgram(windowId) {
     return {
         type: CLOSE_PROGRAM,
-        id,
         windowId
     }
 }
@@ -84,8 +78,17 @@ export function fullscreenProgram(windowId, isFullscreen) {
 }
 
 export function openProgram(file) {
-    return dispatch => {
-        console.log(file);
-        dispatch(openNewProgram(file.filetype, file.payload));
+    return dispatch => checkForPassword(file, dispatch, () => dispatch(openNewProgram(file.filetype, file.payload)))
+}
+
+export function openFolder(windowId, folderName, folder) {
+    return dispatch => checkForPassword(folder, dispatch, () => dispatch(openNewFolder(windowId, folderName)))
+}
+
+function checkForPassword(itemToCheck, dispatch, successCallback) {
+    if(itemToCheck.password) {
+        dispatch(openNewProgram(PASSWORD_DIALOG, {neededPassword: itemToCheck.password, successCallback}))
+    } else {
+        successCallback();
     }
 }
