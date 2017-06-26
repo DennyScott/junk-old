@@ -33,7 +33,8 @@ const defaultState = {
         name: 'Password',
         payload: {
             needPassword: '',
-            successCallback: () => {}
+            successCallback: () => {},
+            inputText: '',
         }
     }],
     openPrograms: [],
@@ -78,10 +79,10 @@ const defaultState = {
                                         contents: {
                                             someRandomFolder: {
                                                 filetype: FOLDER,
+                                                password: 'hello',
                                                 contents: {
                                                     youMadeItIn: {
                                                         filetype: FOLDER,
-                                                        password: 'hello',
                                                         contents: {},
                                                     }
                                                 }

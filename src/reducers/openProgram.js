@@ -1,4 +1,4 @@
-import { OPEN_PROGRAM, CLOSE_PROGRAM, HIDE_PROGRAM, FULLSCREEN_PROGRAM, OPEN_FOLDER, UP_FOLDER, BACK_FOLDER, FORWARD_FOLDER  } from '../actions/openProgram';
+import { OPEN_PROGRAM, CLOSE_PROGRAM, HIDE_PROGRAM, FULLSCREEN_PROGRAM, OPEN_FOLDER, UP_FOLDER, BACK_FOLDER, FORWARD_FOLDER, UPDATE_PASSWORD_INPUT } from 'actions/openProgram';
 
 
 const CURRENT_WINDOW_ID = 0;
@@ -62,6 +62,8 @@ export const openPrograms = (state = [], action) => {
             return [...state, {id: action.id, windowId: CURRENT_WINDOW_ID++, isShowing:true, isFullscreen:false, payload: action.payload}];
         case CLOSE_PROGRAM:
             return state.filter(openProgram => openProgram.windowId !== action.windowId);
+        case UPDATE_PASSWORD_INPUT:
+            return updateStateOfOpenProgram(state, action.windowId, openProgram => ({ ...openProgram, payload: { ...(openProgram.payload), inputText: action.inputText }}));
         default:
             return state;
     }

@@ -9,6 +9,7 @@ export const OPEN_FOLDER = 'OPEN_FOLDER';
 export const BACK_FOLDER = 'BACK_FOLDER';
 export const FORWARD_FOLDER = 'FORWARD_FOLDER';
 export const UP_FOLDER = 'UP_FOLDER';
+export const UPDATE_PASSWORD_INPUT = 'UPDATE_PASSWORD_INPUT';
 
 export function openNewFolder(windowId, folder) {
     return {
@@ -77,6 +78,14 @@ export function fullscreenProgram(windowId, isFullscreen) {
     }
 }
 
+export function updatePasswordInput(windowId, inputText) {
+    return {
+        type: UPDATE_PASSWORD_INPUT,
+        windowId,
+        inputText
+    }
+}
+
 export function openProgram(file) {
     return dispatch => checkForPassword(file, dispatch, () => dispatch(openNewProgram(file.filetype, file.payload)))
 }
@@ -87,7 +96,7 @@ export function openFolder(windowId, folderName, folder) {
 
 function checkForPassword(itemToCheck, dispatch, successCallback) {
     if(itemToCheck.password) {
-        dispatch(openNewProgram(PASSWORD_DIALOG, {neededPassword: itemToCheck.password, successCallback}))
+        dispatch(openNewProgram(PASSWORD_DIALOG, {neededPassword: itemToCheck.password, inputText: '', successCallback}))
     } else {
         successCallback();
     }

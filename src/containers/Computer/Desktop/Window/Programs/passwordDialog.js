@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ProgramWindow from '../programWindow';
-import { closeProgram } from '../../../../../actions/openProgram';
+import { closeProgram, updatePasswordInput } from '../../../../../actions/openProgram';
+import SingleInputWindow from 'components/Computer/Desktop/Window/singleInput';
 
 class PasswordDialog extends Component {
 
@@ -12,9 +12,9 @@ class PasswordDialog extends Component {
     };
 
     onSubmitPassword() {
-        this.props.program.payload.neededPassword === this.passwordInput.value
+        this.props.program.payload.neededPassword === this.props.program.payload.inputText
             ? this.onSuccessPasswordSubmit()
-            : this.passwordInput.value = "";
+            : this.props.updatePasswordInput(this.props.program.windowId, "");
     }
 
     onSuccessPasswordSubmit() {
@@ -24,16 +24,22 @@ class PasswordDialog extends Component {
 
     render() {
         return (
-            <ProgramWindow program={this.props.program}>
-                <input type="text" name="password" ref={input => this.passwordInput = input}/>
-                <button onClick={() => this.onSubmitPassword(this.props.program.payload.successCallback)} />
-            </ProgramWindow>
+            <SingleInputWindow 
+                program={this.props.program} 
+                type="password" 
+                name="password-dialog" 
+                content={this.props.program.payload.inputText} 
+                onInputChange={input => this.props.updatePasswordInput(this.props.program.windowId, input.target.value)} 
+                description="Please submit the correct password" 
+                onSubmitForm={() => this.onSubmitPassword()}
+            />
         );
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     closeProgram: windowId => dispatch(closeProgram(windowId)),
+    updatePasswordInput: (windowId, input) => dispatch(updatePasswordInput(windowId, input)),
 })
 
 export default connect(null, mapDispatchToProps)(PasswordDialog);
