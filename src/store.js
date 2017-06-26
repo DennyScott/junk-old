@@ -79,7 +79,7 @@ const defaultState = {
                                         contents: {
                                             someRandomFolder: {
                                                 filetype: FOLDER,
-                                                password: 'hello',
+                                                password: 'RonHextall27',
                                                 contents: {
                                                     youMadeItIn: {
                                                         filetype: FOLDER,
