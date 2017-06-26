@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { getExplorerOpenPrograms } from './openPrograms';
-import { NOTEPAD, EXPLORER } from '../programs';
+import { NOTEPAD, EXPLORER } from 'programs';
 
 const getDrive = state => state.drive;
 const getUser = state => state.user;

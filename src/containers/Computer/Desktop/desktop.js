@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getOpenPrograms, getNotepadOpenPrograms, getPasswordDialogPrograms } from '../../../selectors/openPrograms';
-import { getExplorerOpenProgramsWithContents, getDesktopContents } from '../../../selectors/drive';
-import { openProgram } from '../../../actions/openProgram';
-import { storeVariable } from '../../../actions/variable';
-import Icon from '../../../components/Computer/Desktop/Icon/icon';
-import Notepad from '../../../components/Computer/Desktop/Window/Programs/notepad';
+import { getOpenPrograms, getNotepadOpenPrograms, getPasswordDialogPrograms } from 'selectors/openPrograms';
+import { getExplorerOpenProgramsWithContents, getDesktopContents } from 'selectors/drive';
+import { openProgram } from 'actions/openProgram';
+import { storeVariable } from 'actions/variable';
+import Icon from 'components/Computer/Desktop/Icon/icon';
+import Notepad from 'components/Computer/Desktop/Window/Programs/notepad';
 import Explorer from './Window/Programs/explorer';
 import PasswordDialog from './Window/Programs/passwordDialog';
-import { NOTEPAD, EXPLORER } from '../../../programs';
+import { NOTEPAD, EXPLORER } from 'programs';
 
 import './desktop.css';
 

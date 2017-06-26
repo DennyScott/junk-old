@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { openFolder, backFolder, upFolder, forwardFolder } from '../../../../../actions/openProgram';
-import NavigationBar from '../../../../../components/Computer/Desktop/Window/NavigationBar/navigationBar';
+import { openFolder, backFolder, upFolder, forwardFolder } from 'actions/openProgram';
+import NavigationBar from 'components/Computer/Desktop/Window/NavigationBar/navigationBar';
 import ProgramWindow from '../programWindow';
 
 class Explorer extends Component {

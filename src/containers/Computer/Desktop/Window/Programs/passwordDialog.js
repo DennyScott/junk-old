@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { closeProgram, updatePasswordInput } from '../../../../../actions/openProgram';
+import { closeProgram, updatePasswordInput } from 'actions/openProgram';
 import SingleInputWindow from 'components/Computer/Desktop/Window/singleInput';
 
 class PasswordDialog extends Component {

@@ -1,5 +1,5 @@
 import store from '../store';
-import { PASSWORD_DIALOG } from '../programs';
+import { PASSWORD_DIALOG } from 'programs';
 
 export const OPEN_PROGRAM = 'OPEN_PROGRAM';
 export const CLOSE_PROGRAM = 'CLOSE_PROGRAM';

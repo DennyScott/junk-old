@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
-import { closeProgram, hideProgram, fullscreenProgram } from '../../../../actions/openProgram';
-import WindowBar from '../../../../components/Computer/Desktop/Window/WindowBar/windowBar';
-import MenuBar from '../../../../components/Computer/Desktop/Window/MenuBar/menuBar';
+import { closeProgram, hideProgram, fullscreenProgram } from 'actions/openProgram';
+import WindowBar from 'components/Computer/Desktop/Window/WindowBar/windowBar';
+import MenuBar from 'components/Computer/Desktop/Window/MenuBar/menuBar';
 import './programWindow.css';
 
 class ProgramWindow extends Component {
