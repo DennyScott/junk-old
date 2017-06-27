@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+
 import { getOpenPrograms, getNotepadOpenPrograms, getPasswordDialogPrograms } from 'selectors/openPrograms';
 import { getExplorerOpenProgramsWithContents, getDesktopContents } from 'selectors/drive';
 import { openProgram } from 'actions/openProgram';
