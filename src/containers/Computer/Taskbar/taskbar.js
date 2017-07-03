@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getOpenPrograms } from '../../../selectors/openPrograms';
+import { getOpenPrograms } from 'selectors/openPrograms';
 import styled from 'styled-components';
-import { hideProgram } from '../../../actions/openProgram';
-import TaskbarItem from '../../../components/Computer/Taskbar/TaskbarItem/taskbar-item';
-import MenuTray from '../../../components/Computer/Taskbar/MenuTray/menu-tray';
-import backgroundImage from '../../../assets/Computer/Taskbar/xptaskbar.png';
-import startButton from '../../../assets/Computer/Taskbar/xpstart_btn.png';
+import { hideProgram } from 'actions/openProgram';
+import TaskbarItem from 'components/Computer/Taskbar/TaskbarItem/taskbar-item';
+import MenuTray from 'components/Computer/Taskbar/MenuTray/menu-tray';
+import backgroundImage from 'assets/Computer/Taskbar/xptaskbar.png';
+import startButton from 'assets/Computer/Taskbar/xpstart_btn.png';
 
 
 const StartButton = styled.div`

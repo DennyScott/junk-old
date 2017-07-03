@@ -1,5 +1,4 @@
-import { OPEN_PROGRAM, CLOSE_PROGRAM, HIDE_PROGRAM, FULLSCREEN_PROGRAM } from 'actions/openProgram';
-import { OPEN_FOLDER, UP_FOLDER, BACK_FOLDER, FORWARD_FOLDER } from 'actions/drive';
+import { OPEN_PROGRAM, CLOSE_PROGRAM, HIDE_PROGRAM, FULLSCREEN_PROGRAM, OPEN_FOLDER, UP_FOLDER, BACK_FOLDER, FORWARD_FOLDER, UPDATE_PASSWORD_INPUT } from 'actions/openProgram';
 
 
 const CURRENT_WINDOW_ID = 0;
@@ -39,7 +38,7 @@ const traverseHistory =  (state, windowId, indexUpdateFunc) => {
     return changeFolderLocation(
         updateCurrentHistoryIndex(state, windowId, indexUpdateFunc),
         windowId,
-        (folderLocation, openProgram) => openProgram.payload.previousLocations[openProgram.payload.currentLocationIndex] || openProgram.payload.location,
+        (folderLocation, openProgram) => openProgram.payload.previousLocations[openProgram.payload.currentLocationIndex],
         false
     );
 }
@@ -47,10 +46,10 @@ const traverseHistory =  (state, windowId, indexUpdateFunc) => {
 export const openPrograms = (state = [], action) => {
     switch(action.type) {
         case OPEN_FOLDER:
-            return changeFolderLocation(state, action.windowId, folderLocation => `${folderLocation}/${action.folder}`);
+            return changeFolderLocation(state, action.windowId, folderLocation => folderLocation.length > 0 ? `${folderLocation}/${action.folder}` : `${action.folder}`);
         case UP_FOLDER:
             return changeFolderLocation(state, action.windowId, folderLocation => 
-                folderLocation.substring(0, (folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : folderLocation.length)));
+                folderLocation.substring(0, (folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : 0)));
         case BACK_FOLDER:
             return traverseHistory(state, action.windowId, openProgram => Math.max(openProgram.payload.currentLocationIndex - 1, 0));
         case FORWARD_FOLDER:
@@ -62,7 +61,9 @@ export const openPrograms = (state = [], action) => {
         case OPEN_PROGRAM:
             return [...state, {id: action.id, windowId: CURRENT_WINDOW_ID++, isShowing:true, isFullscreen:false, payload: action.payload}];
         case CLOSE_PROGRAM:
-            return state.filter(openProgram => openProgram.id !== action.id || openProgram.windowId !== action.windowId);
+            return state.filter(openProgram => openProgram.windowId !== action.windowId);
+        case UPDATE_PASSWORD_INPUT:
+            return updateStateOfOpenProgram(state, action.windowId, openProgram => ({ ...openProgram, payload: { ...(openProgram.payload), inputText: action.inputText }}));
         default:
             return state;
     }

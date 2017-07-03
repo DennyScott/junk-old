@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
-import { closeProgram, hideProgram, fullscreenProgram } from '../../../../actions/openProgram';
-import WindowBar from '../../../../components/Computer/Desktop/Window/WindowBar/windowBar';
-import MenuBar from '../../../../components/Computer/Desktop/Window/MenuBar/menuBar';
+import { closeProgram, hideProgram, fullscreenProgram } from 'actions/openProgram';
+import WindowBar from 'components/Computer/Desktop/Window/WindowBar/windowBar';
+import MenuBar from 'components/Computer/Desktop/Window/MenuBar/menuBar';
 import './programWindow.css';
 
 class ProgramWindow extends Component {
@@ -15,7 +15,7 @@ class ProgramWindow extends Component {
   }
 
   closeWindow() {
-    this.props.closeProgram(this.props.program.id, this.props.program.windowId);
+    this.props.closeProgram(this.props.program.windowId);
   }
 
   minimizeWindow() {
@@ -56,7 +56,7 @@ class ProgramWindow extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  closeProgram: (programId, windowId) => dispatch(closeProgram(programId, windowId)),
+  closeProgram: windowId => dispatch(closeProgram(windowId)),
   hideProgram: (windowId, isShowing) => dispatch(hideProgram(windowId, isShowing)),
   fullscreenProgram: (windowId, isFullscreen) => dispatch(fullscreenProgram(windowId, isFullscreen)),
 });

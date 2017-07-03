@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getOpenPrograms } from '../../../selectors/openPrograms';
-import { openProgram } from '../../../actions/openProgram';
-import { storeVariable } from '../../../actions/variable';
-import Icon from '../../../components/Computer/Desktop/Icon/icon';
-import Notepad from '../../../components/Computer/Desktop/Window/Programs/notepad';
+
+import { getOpenPrograms, getNotepadOpenPrograms, getPasswordDialogPrograms } from 'selectors/openPrograms';
+import { getExplorerOpenProgramsWithContents, getDesktopContents } from 'selectors/drive';
+import { openProgram } from 'actions/openProgram';
+import { storeVariable } from 'actions/variable';
+import Icon from 'components/Computer/Desktop/Icon/icon';
+import Notepad from 'components/Computer/Desktop/Window/Programs/notepad';
 import Explorer from './Window/Programs/explorer';
-import { NOTEPAD, EXPLORER } from '../../../programs';
+import PasswordDialog from './Window/Programs/passwordDialog';
+import { NOTEPAD, EXPLORER } from 'programs';
 
 import './desktop.css';
 
@@ -33,20 +36,15 @@ class Desktop extends Component {
         return (
             <DesktopDiv>
                 <DesktopIcons> 
-                    {this.props.programs.map(program =>
-                        <Icon key={program.id} onDoubleClick={() => this.props.openProgram(program.id, program.payload)} name={program.name} logo={program.logo}/>
+                    {Object.keys(this.props.contents).map(key =>
+                        <Icon key={key} onDoubleClick={() => this.props.openProgram(this.props.contents[key])} name={key} logo={this.props.contents[key].logo}/>
                     )}
                 </DesktopIcons>
 
                 <OpenWindows>
-                    {this.props.openPrograms.map(program => {
-                        switch(program.id) {
-                            case NOTEPAD:
-                                return <Notepad key={program.windowId} program={program} text={program.payload.text}/>
-                            case EXPLORER:
-                                return <Explorer key= {program.windowId} program={program}/>
-                        }
-                    })}      
+                    {this.props.notepadOpenPrograms.map(program => <Notepad key={program.windowId} program={program} text={program.payload.text}/>)}
+                    {this.props.explorerOpenPrograms.map(program => <Explorer key= {program.windowId} program={program}/>)}
+                    {this.props.passwordDialogPrograms.map(program => <PasswordDialog key= {program.windowId} program={program}/>)}        
                 </OpenWindows>          
             </DesktopDiv>
         );
@@ -54,12 +52,15 @@ class Desktop extends Component {
 }
 
 const mapStateToProps = state => ({
+    contents: getDesktopContents(state),
     programs: state.programs,
-    openPrograms: getOpenPrograms(state),
+    notepadOpenPrograms: getNotepadOpenPrograms(state),
+    explorerOpenPrograms: getExplorerOpenProgramsWithContents(state),
+    passwordDialogPrograms: getPasswordDialogPrograms(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-    openProgram: (programId, payload) => dispatch(openProgram(programId, payload)),
+    openProgram: program => dispatch(openProgram(program)),
     createVariable: (variableName, payload) => dispatch(storeVariable(variableName, payload))
 });
 
