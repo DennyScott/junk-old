@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import {game} from './phaser/phaser';
-import Computer from './containers/Computer/computer';
+import Computer from './modules/computer/components/computer';
 
 import './App.css';
 

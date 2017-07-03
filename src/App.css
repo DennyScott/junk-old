@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-image: url("./assets/Computer/Desktop/background.jpg");
+  background-image: url("./modules/desktop/assets/background.jpg");
   position: fixed;
   top: 0;
   bottom: 0;
