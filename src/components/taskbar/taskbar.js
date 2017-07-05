@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TaskbarItem from './components/taskbar-item/taskbar-item';
 import MenuTray from './components/menu-tray/menu-tray';
-import { getActivePrograms } from 'selectors/activePrograms';
+import { getDetailedActivePrograms } from 'selectors/activePrograms';
 import { hideProgram } from 'modules/program';
 import backgroundImage from './assets/xptaskbar.png';
 import startButton from './assets/xpstart_btn.png';
@@ -38,7 +38,7 @@ class Taskbar extends Component {
         return (
             <TaskbarDiv>
                 <StartButton />
-                {this.props.activePrograms.map(program => <TaskbarItem key={program.windowId} name={program.name} onClick={() => this.props.hideProgram(program.windowId, !program.isShowing)}/>)}
+                {this.props.activePrograms.map(program => <TaskbarItem key={program.id + program.windowId} name={program.name} onClick={() => this.props.hideProgram(program.id, program.windowId, !program.isShowing)}/>)}
                 <MenuTray />
             </TaskbarDiv>
         );
@@ -46,11 +46,11 @@ class Taskbar extends Component {
 }
 
 const mapStateToProps = state => ({
-    activePrograms: getActivePrograms(state)
+    activePrograms: getDetailedActivePrograms(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  hideProgram: (windowId, isShowing) => dispatch(hideProgram(windowId, isShowing))
+  hideProgram: (id, windowId, isShowing) => dispatch(hideProgram(id, windowId, isShowing))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Taskbar);

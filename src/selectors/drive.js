@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import { getExplorerActivePrograms } from './activePrograms';
 import { NOTEPAD, EXPLORER } from 'programs';
 
 const getDrive = state => state.drive;
 const getUser = state => state.user;
+const getExplorerPrograms = state => state.explorerPrograms;
 
 const getLocation = (drive, location) => {
     let currentLocation = drive;
@@ -13,7 +13,7 @@ const getLocation = (drive, location) => {
 }
 
 export const getExplorerActiveProgramsWithContents = createSelector(
-  [ getDrive, getExplorerActivePrograms ],
+  [ getDrive, getExplorerPrograms ],
   (drive, explorers) => 
     explorers.map(explorer => ({
         ...explorer,

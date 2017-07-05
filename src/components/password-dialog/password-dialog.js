@@ -19,7 +19,7 @@ class PasswordDialog extends Component {
 
     onSuccessPasswordSubmit() {
         this.props.program.payload.successCallback();
-        this.props.closeProgram(this.props.program.windowId);
+        this.props.closeProgram(this.props.program.id, this.props.program.windowId);
     }
 
     render() {
@@ -38,7 +38,7 @@ class PasswordDialog extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    closeProgram: windowId => dispatch(closeProgram(windowId)),
+    closeProgram: (id, windowId) => dispatch(closeProgram(id, windowId)),
     updatePasswordInput: (windowId, input) => dispatch(updatePasswordInput(windowId, input)),
 })
 

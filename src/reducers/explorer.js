@@ -1,8 +1,6 @@
-import { combineReducers } from 'redux'
-
 import { OPEN_PROGRAM, CLOSE_PROGRAM, HIDE_PROGRAM, FULLSCREEN_PROGRAM } from 'actions/activeProgram';
 import { OPEN_FOLDER, UP_FOLDER, BACK_FOLDER, FORWARD_FOLDER } from 'actions/explorer';
-import { UPDATE_PASSWORD_INPUT } from 'actions/password-dialog';
+import { EXPLORER } from 'programs';
 
 const CURRENT_WINDOW_ID = 0;
 
@@ -45,18 +43,16 @@ const traverseHistory =  (state, windowId, indexUpdateFunc) => {
     );
 }
 
-export default function activeProgramsReducer(state = [], action) {
+export const explorerPrograms = (state = [], action) => {
     switch(action.type) {
         case HIDE_PROGRAM:
-            return updateStateOfOpenProgram(state, action.windowId, openProgram => ({ ...openProgram, isShowing: action.isShowing}))
+            return action.id === EXPLORER ? updateStateOfOpenProgram(state, action.windowId, openProgram => ({ ...openProgram, isShowing: action.isShowing})) : state;
         case FULLSCREEN_PROGRAM:
-            return updateStateOfOpenProgram(state, action.windowId, openProgram => ({...openProgram, isFullscreen: action.isFullscreen}));
+            return action.id === EXPLORER ? updateStateOfOpenProgram(state, action.windowId, openProgram => ({...openProgram, isFullscreen: action.isFullscreen})) : state;
         case OPEN_PROGRAM:
-            return [...state, {id: action.id, windowId: CURRENT_WINDOW_ID++, isShowing:true, isFullscreen:false, payload: action.payload}];
+            return action.id === EXPLORER ? [...state, {id: action.id, windowId: CURRENT_WINDOW_ID++, isShowing:true, isFullscreen:false, payload: action.payload}] : state;
         case CLOSE_PROGRAM:
-            return state.filter(openProgram => openProgram.windowId !== action.windowId);
-        case UPDATE_PASSWORD_INPUT:
-            return updateStateOfOpenProgram(state, action.windowId, openProgram => ({ ...openProgram, payload: { ...(openProgram.payload), inputText: action.inputText }}));
+            return action.id === EXPLORER ? state.filter(openProgram => openProgram.windowId !== action.windowId) : state;
         case OPEN_FOLDER:
             return changeFolderLocation(state, action.windowId, folderLocation => folderLocation.length > 0 ? `${folderLocation}/${action.folder}` : `${action.folder}`);
         case UP_FOLDER:
@@ -70,26 +66,3 @@ export default function activeProgramsReducer(state = [], action) {
             return state;
     }
 }
-
-// const explorerReducer = (state = [], action) => {
-//     switch(action.type) {
-//         case OPEN_FOLDER:
-//             return changeFolderLocation(state, action.windowId, folderLocation => folderLocation.length > 0 ? `${folderLocation}/${action.folder}` : `${action.folder}`);
-//         case UP_FOLDER:
-//             return changeFolderLocation(state, action.windowId, folderLocation => 
-//                 folderLocation.substring(0, (folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : 0)));
-//         case BACK_FOLDER:
-//             return traverseHistory(state, action.windowId, openProgram => Math.max(openProgram.payload.currentLocationIndex - 1, 0));
-//         case FORWARD_FOLDER:
-//             return traverseHistory(state, action.windowId, openProgram => Math.min(openProgram.payload.currentLocationIndex + 1, openProgram.payload.previousLocations.length-1));
-//         default:
-//             return state;
-//     }
-// }
-
-//     export default function reducer(state =[], action) {
-//         return combineReducers({
-//             activeProgramsReducer,
-//             explorerReducer
-//         });
-//     }

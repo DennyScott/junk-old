@@ -37,7 +37,9 @@ const defaultState = {
             inputText: '',
         }
     }],
-    activePrograms: [],
+    notepadPrograms: [],
+    explorerPrograms: [],
+    passwordDialogPrograms: [],
     switches: {},
     variables: {},
     user: 'Joel',

@@ -1,6 +1,6 @@
 import store from 'store';
-import { checkForPassword, updateStateOfOpenProgram } from 'modules/program';
-
+import { PASSWORD_DIALOG } from 'programs';
+import { checkForPassword } from './activeProgram';
 //Actions
 export const OPEN_FOLDER = 'OPEN_FOLDER';
 export const BACK_FOLDER = 'BACK_FOLDER';
@@ -39,7 +39,7 @@ function navtigateUpFolder(windowId) {
 
 export function upFolder(windowId) {
     return dispatch => 
-        store.getState().openPrograms.forEach(program => 
+        store.getState().explorerPrograms.forEach(program => 
             program.windowId === windowId && program.payload.location.length > 0 && dispatch(navtigateUpFolder(windowId))
         );
 }

@@ -4,14 +4,16 @@ import { switches } from './switch';
 import { variables } from './variable';
 import { drive } from './drive';
 import { user } from './user';
-import activePrograms from './activeProgram/';
+import { explorerPrograms } from './explorer';
+import { passwordDialogPrograms } from './password-dialog';
+import { notepadPrograms } from './notepad';
 
-console.log(activePrograms);
-console.log(drive);
 
 const rootReducer = combineReducers({
     programs,
-    activePrograms,
+    explorerPrograms,
+    passwordDialogPrograms,
+    notepadPrograms,
     switches,
     variables,
     drive,

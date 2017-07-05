@@ -1,29 +1,45 @@
 import { createSelector } from 'reselect'
-import { NOTEPAD, EXPLORER, PASSWORD_DIALOG } from '../programs';
 const getPrograms = (state) => state.programs;
-const getActiveProgramObjects = state => state.activePrograms;
+const getNotepadPrograms = state => state.notepadPrograms;
+const getExplorerPrograms = state => state.explorerPrograms;
+const getPasswordPrograms = state => state.passwordDialogPrograms;
 
-console.log(getActivePrograms)
 export const getActivePrograms = createSelector(
-  [ getPrograms, getActiveProgramObjects ],
-  (programs, activePrograms) => 
-    activePrograms.map(activeProgram => ({
-      ...(programs.find(e => e.id === activeProgram.id)), 
-      ...activeProgram
-    }))
+  [getNotepadPrograms, getExplorerPrograms, getPasswordPrograms],
+  mapCombinePrograms
 )
 
-export const getNotepadActivePrograms = createSelector(
-  [getActivePrograms],
-  activePrograms => activePrograms.filter(e => e.id === NOTEPAD)
+export const getDetailedNotepadActivePrograms = createSelector(
+  [ getPrograms, getNotepadPrograms ],
+  mapDetailedActivePrograms
+);
+
+export const getDetailedExplorerActivePrograms = createSelector(
+  [ getPrograms, getExplorerPrograms ],
+  mapDetailedActivePrograms
+);
+
+export const getDetailedPasswordActivePrograms = createSelector(
+  [ getPrograms, getPasswordPrograms ],
+  mapDetailedActivePrograms
+);
+
+export const getDetailedActivePrograms = createSelector(
+  [ getDetailedNotepadActivePrograms, getDetailedExplorerActivePrograms, getDetailedPasswordActivePrograms ],
+  mapCombinePrograms
 )
 
-export const getExplorerActivePrograms = createSelector(
-  [getActivePrograms],
-  activePrograms => activePrograms.filter(e => e.id === EXPLORER)
-)
+function mapDetailedActivePrograms (programs, activePrograms) {
+  return activePrograms.map(activeProgram => ({
+    ...(programs.find(e => e.id === activeProgram.id)), 
+    ...activeProgram
+  }))
+}
 
-export const getPasswordDialogPrograms = createSelector(
-  [getActivePrograms],
-  activePrograms => activePrograms.filter(e => e.id === PASSWORD_DIALOG)
-)
+function mapCombinePrograms (notepads, explorers, passwords) { 
+  return [
+    ...notepads,
+    ...explorers,
+    ...passwords
+  ]
+}

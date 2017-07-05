@@ -52,9 +52,9 @@ class Desktop extends Component {
 const mapStateToProps = state => ({
     contents: getDesktopContents(state),
     programs: state.programs,
-    notepadActivePrograms: getNotepadActivePrograms(state),
+    notepadActivePrograms: state.notepadPrograms,
     explorerActivePrograms: getExplorerActiveProgramsWithContents(state),
-    passwordDialogPrograms: getPasswordDialogPrograms(state),
+    passwordDialogPrograms: state.passwordDialogPrograms,
 });
 
 const mapDispatchToProps = dispatch => ({

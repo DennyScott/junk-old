@@ -23,24 +23,27 @@ export function openNewProgram(id, payload) {
     }
 }
 
-export function closeProgram(windowId) {
+export function closeProgram(id, windowId) {
     return {
         type: CLOSE_PROGRAM,
+        id,
         windowId
     }
 }
 
-export function hideProgram(windowId, isShowing) {
+export function hideProgram(id, windowId, isShowing) {
     return {
         type: HIDE_PROGRAM,
+        id,
         windowId,
         isShowing
     }
 }
 
-export function fullscreenProgram(windowId, isFullscreen) {
+export function fullscreenProgram(id, windowId, isFullscreen) {
     return {
         type: FULLSCREEN_PROGRAM,
+        id,
         windowId,
         isFullscreen
     }
