@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { getExplorerOpenPrograms } from './openPrograms';
+import { getExplorerActivePrograms } from './activePrograms';
 import { NOTEPAD, EXPLORER } from 'programs';
 
 const getDrive = state => state.drive;
@@ -12,8 +12,8 @@ const getLocation = (drive, location) => {
     return currentLocation;
 }
 
-export const getExplorerOpenProgramsWithContents = createSelector(
-  [ getDrive, getExplorerOpenPrograms ],
+export const getExplorerActiveProgramsWithContents = createSelector(
+  [ getDrive, getExplorerActivePrograms ],
   (drive, explorers) => 
     explorers.map(explorer => ({
         ...explorer,

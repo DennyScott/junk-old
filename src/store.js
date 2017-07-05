@@ -2,8 +2,8 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk'
 import {createLogger} from 'redux-logger';
 import rootReducer from './reducers/index';
-import myComputerIcon from 'modules/desktop/assets/icons/my_computer.png';
-import notepadIcon from 'modules/desktop/assets/icons/notepad.png';
+import myComputerIcon from 'components/desktop/assets/icons/my_computer.png';
+import notepadIcon from 'components/desktop/assets/icons/notepad.png';
 import { NOTEPAD, EXPLORER, PASSWORD_DIALOG } from './programs';
 
 const loggerMiddleware = createLogger();
@@ -37,7 +37,7 @@ const defaultState = {
             inputText: '',
         }
     }],
-    openPrograms: [],
+    activePrograms: [],
     switches: {},
     variables: {},
     user: 'Joel',

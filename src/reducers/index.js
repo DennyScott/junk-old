@@ -1,14 +1,17 @@
 import { combineReducers } from 'redux';
 import { programs } from './program';
-import { openPrograms } from './openProgram';
 import { switches } from './switch';
 import { variables } from './variable';
 import { drive } from './drive';
 import { user } from './user';
+import activePrograms from './activeProgram/';
+
+console.log(activePrograms);
+console.log(drive);
 
 const rootReducer = combineReducers({
     programs,
-    openPrograms,
+    activePrograms,
     switches,
     variables,
     drive,
