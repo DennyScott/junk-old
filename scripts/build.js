@@ -119,11 +119,8 @@ function printErrors(summary, errors) {
   });
 }
 
-// Create the production build and print the deployment instructions.
-function build(previousSizeMap) {
-  console.log('Creating an optimized production build...');
-  webpack(config).run((err, stats) => {
-    if (err) {
+function runWebpack(err, stats, previousSizeMap ) {
+  if (err) {
       printErrors('Failed to compile.', [err]);
       process.exit(1);
     }
@@ -213,6 +210,13 @@ function build(previousSizeMap) {
       console.log('  ' + chalk.cyan(openCommand) + ' http://localhost:9000');
       console.log();
     }
+}
+
+// Create the production build and print the deployment instructions.
+function build(previousSizeMap) {
+  console.log('Creating an optimized production build...');
+  webpack(config).run((err, stats) => {
+    runWebpack(err, stats, previousSizeMap);
   });
 }
 
