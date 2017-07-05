@@ -2,8 +2,8 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk'
 import {createLogger} from 'redux-logger';
 import rootReducer from './reducers/index';
-import MyComputerLogo from './assets/Computer/Desktop/Icon/my_computer.png';
-import NotepadLogo from './assets/Computer/Desktop/Icon/notepad.png';
+import myComputerIcon from 'components/desktop/assets/icons/my_computer.png';
+import notepadIcon from 'components/desktop/assets/icons/notepad.png';
 import { NOTEPAD, EXPLORER, PASSWORD_DIALOG } from './programs';
 
 const loggerMiddleware = createLogger();
@@ -12,7 +12,7 @@ const FOLDER = "FOLDER";
 const defaultState = {
     programs: [{
         id: NOTEPAD,
-        logo: NotepadLogo,
+        logo: notepadIcon,
         name: 'Notepad',
         payload: {
             text: "",
@@ -20,7 +20,7 @@ const defaultState = {
     },
     {
         id: EXPLORER,
-        logo: MyComputerLogo,
+        logo: myComputerIcon,
         name: 'My Computer',
         payload: {
             location: "",
@@ -37,7 +37,9 @@ const defaultState = {
             inputText: '',
         }
     }],
-    openPrograms: [],
+    notepadPrograms: [],
+    explorerPrograms: [],
+    passwordDialogPrograms: [],
     switches: {},
     variables: {},
     user: 'Joel',
@@ -58,7 +60,7 @@ const defaultState = {
                                         contents: {
                                             "My Computer": {
                                                 filetype: EXPLORER,
-                                                logo: MyComputerLogo,
+                                                logo: myComputerIcon,
                                                 payload: {
                                                     location: "C:",
                                                     previousLocations: ["C:"],
@@ -67,7 +69,7 @@ const defaultState = {
                                             },
                                             myTxtFile : {
                                                 filetype: NOTEPAD,
-                                                logo: NotepadLogo,
+                                                logo: notepadIcon,
                                                 payload: {
                                                     text: "I spent the last few days figuring out the password to Joel's Facebook account.  It's RonHextall27.  I've never seen someone actually give so much of a shit about some random hockey goalie to use it for a password, but hey, at least I have access to his account now!",
                                                 }
