@@ -45,7 +45,7 @@ const traverseHistory =  (state, windowId, indexUpdateFunc) => {
     );
 }
 
-export const activeProgramsReducer = (state = [], action) => {
+export default function activeProgramsReducer(state = [], action) {
     switch(action.type) {
         case HIDE_PROGRAM:
             return updateStateOfOpenProgram(state, action.windowId, openProgram => ({ ...openProgram, isShowing: action.isShowing}))
@@ -57,13 +57,6 @@ export const activeProgramsReducer = (state = [], action) => {
             return state.filter(openProgram => openProgram.windowId !== action.windowId);
         case UPDATE_PASSWORD_INPUT:
             return updateStateOfOpenProgram(state, action.windowId, openProgram => ({ ...openProgram, payload: { ...(openProgram.payload), inputText: action.inputText }}));
-        default:
-            return state;
-    }
-}
-
-const explorerReducer = (state = [], action) => {
-    switch(action.type) {
         case OPEN_FOLDER:
             return changeFolderLocation(state, action.windowId, folderLocation => folderLocation.length > 0 ? `${folderLocation}/${action.folder}` : `${action.folder}`);
         case UP_FOLDER:
@@ -78,9 +71,25 @@ const explorerReducer = (state = [], action) => {
     }
 }
 
-    export default function reducer(state =[], action) {
-        return combineReducers({
-            activeProgramsReducer,
-            explorerReducer
-        });
-    }
+// const explorerReducer = (state = [], action) => {
+//     switch(action.type) {
+//         case OPEN_FOLDER:
+//             return changeFolderLocation(state, action.windowId, folderLocation => folderLocation.length > 0 ? `${folderLocation}/${action.folder}` : `${action.folder}`);
+//         case UP_FOLDER:
+//             return changeFolderLocation(state, action.windowId, folderLocation => 
+//                 folderLocation.substring(0, (folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : 0)));
+//         case BACK_FOLDER:
+//             return traverseHistory(state, action.windowId, openProgram => Math.max(openProgram.payload.currentLocationIndex - 1, 0));
+//         case FORWARD_FOLDER:
+//             return traverseHistory(state, action.windowId, openProgram => Math.min(openProgram.payload.currentLocationIndex + 1, openProgram.payload.previousLocations.length-1));
+//         default:
+//             return state;
+//     }
+// }
+
+//     export default function reducer(state =[], action) {
+//         return combineReducers({
+//             activeProgramsReducer,
+//             explorerReducer
+//         });
+//     }
