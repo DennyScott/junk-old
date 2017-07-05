@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { getActivePrograms, getNotepadActivePrograms, getPasswordDialogPrograms } from 'selectors/activePrograms';
-import { getExplorerActiveProgramsWithContents, getDesktopContents } from 'selectors/drive';
+import { getDetailedActivePrograms } from 'selectors/activePrograms';
+import { getDesktopContents } from 'selectors/drive';
 import { openProgram } from 'actions/activeProgram';
 import { storeVariable } from 'actions/variable';
 import Icon from './components/icon';
 import Notepad from 'components/notepad';
 import Explorer from 'components/explorer';
 import PasswordDialog from 'components/password-dialog';
-import { NOTEPAD, EXPLORER } from 'programs';
+import { NOTEPAD, EXPLORER, PASSWORD_DIALOG } from 'programs';
 
 const DesktopDiv = styled.div`
     height: calc(100% - 50px);
@@ -30,6 +30,22 @@ const DesktopIcons = styled.div`
 `
 
 class Desktop extends Component {
+
+    renderProgramWindow() {
+        return this.props.activePrograms.map(program => {
+            switch(program.id) {
+                case NOTEPAD:
+                    return <Notepad key={program.windowId} program={program} text={program.payload.text}/>
+                case EXPLORER:
+                    return <Explorer key= {program.windowId} program={program}/>
+                case PASSWORD_DIALOG:
+                    return <PasswordDialog key= {program.windowId} program={program}/>
+                default:
+                    return null;
+            }
+        })
+    }
+
     render() {
         return (
             <DesktopDiv>
@@ -40,9 +56,7 @@ class Desktop extends Component {
                 </DesktopIcons>
 
                 <OpenWindows>
-                    {this.props.notepadActivePrograms.map(program => <Notepad key={program.windowId} program={program} text={program.payload.text}/>)}
-                    {this.props.explorerActivePrograms.map(program => <Explorer key= {program.windowId} program={program}/>)}
-                    {this.props.passwordDialogPrograms.map(program => <PasswordDialog key= {program.windowId} program={program}/>)}        
+                    {this.renderProgramWindow()}       
                 </OpenWindows>          
             </DesktopDiv>
         );
@@ -52,9 +66,7 @@ class Desktop extends Component {
 const mapStateToProps = state => ({
     contents: getDesktopContents(state),
     programs: state.programs,
-    notepadActivePrograms: state.notepadPrograms,
-    explorerActivePrograms: getExplorerActiveProgramsWithContents(state),
-    passwordDialogPrograms: state.passwordDialogPrograms,
+    activePrograms: getDetailedActivePrograms(state)
 });
 
 const mapDispatchToProps = dispatch => ({
