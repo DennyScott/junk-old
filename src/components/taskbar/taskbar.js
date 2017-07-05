@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import TaskbarItem from './components/taskbar-item/taskbar-item';
 import MenuTray from './components/menu-tray/menu-tray';
 import { getDetailedActivePrograms } from 'selectors/activePrograms';
-import { hideProgram } from 'modules/program';
+import { hideProgram } from 'actions/activeProgram';
 import backgroundImage from './assets/xptaskbar.png';
 import startButton from './assets/xpstart_btn.png';
 
