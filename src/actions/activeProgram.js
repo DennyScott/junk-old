@@ -7,28 +7,32 @@ export const HIDE_PROGRAM = 'HIDE_PROGRAM';
 export const FULLSCREEN_PROGRAM = 'FULLSCREEN_PROGRAM';
 
 //Reducer Helpers
-const CURRENT_WINDOW_ID = 0;
+let CURRENT_WINDOW_ID = 0;
 
 const updateStateOfOpenProgram = (state, windowId, updateFunc) => {
-    return state.map(openProgram => 
-        openProgram.windowId === windowId ? updateFunc(openProgram) : openProgram);
-}
+    return state.map(
+        openProgram =>
+            openProgram.windowId === windowId
+                ? updateFunc(openProgram)
+                : openProgram,
+    );
+};
 
 //Action Creators
 export function openNewProgram(id, payload) {
     return {
         type: OPEN_PROGRAM,
         id,
-        payload
-    }
+        payload,
+    };
 }
 
 export function closeProgram(id, windowId) {
     return {
         type: CLOSE_PROGRAM,
         id,
-        windowId
-    }
+        windowId,
+    };
 }
 
 export function hideProgram(id, windowId, isShowing) {
@@ -36,8 +40,8 @@ export function hideProgram(id, windowId, isShowing) {
         type: HIDE_PROGRAM,
         id,
         windowId,
-        isShowing
-    }
+        isShowing,
+    };
 }
 
 export function fullscreenProgram(id, windowId, isFullscreen) {
@@ -45,17 +49,26 @@ export function fullscreenProgram(id, windowId, isFullscreen) {
         type: FULLSCREEN_PROGRAM,
         id,
         windowId,
-        isFullscreen
-    }
+        isFullscreen,
+    };
 }
 
 export function openProgram(file) {
-    return dispatch => checkForPassword(file, dispatch, () => dispatch(openNewProgram(file.filetype, file.payload)))
+    return dispatch =>
+        checkForPassword(file, dispatch, () =>
+            dispatch(openNewProgram(file.filetype, file.payload)),
+        );
 }
 
 export function checkForPassword(itemToCheck, dispatch, successCallback) {
-    if(itemToCheck.password) {
-        dispatch(openNewProgram(PASSWORD_DIALOG, {neededPassword: itemToCheck.password, inputText: '', successCallback}))
+    if (itemToCheck.password) {
+        dispatch(
+            openNewProgram(PASSWORD_DIALOG, {
+                neededPassword: itemToCheck.password,
+                inputText: '',
+                successCallback,
+            }),
+        );
     } else {
         successCallback();
     }
