@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import Draggable from 'react-draggable';
 import styled from 'styled-components';
 
@@ -21,7 +20,13 @@ const draggableIcon = props => (
       className="desktop-icon handle"
       onDoubleClick={props.onDoubleClick}
     >
-      <img src={props.logo} width="42" height="42" draggable="false" />
+      <img
+        alt="logo"
+        src={props.logo}
+        width="42"
+        height="42"
+        draggable="false"
+      />
       <AppName>
         <span className="app-name">{props.name}</span>
       </AppName>

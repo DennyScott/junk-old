@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { NavigationBar } from 'components/program-window';
 import ProgramWindow from 'components/program-window';
 import {
@@ -35,7 +34,7 @@ class Explorer extends Component {
               this.props.openFolder(
                 this.props.program.windowId,
                 key,
-                this.props.program.currentDirectory[key]
+                this.props.program.currentDirectory[key],
               )
             }
           >

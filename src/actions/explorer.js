@@ -1,5 +1,4 @@
 import store from 'store';
-import { PASSWORD_DIALOG } from 'programs';
 import { checkForPassword } from './activeProgram';
 //Actions
 export const OPEN_FOLDER = 'OPEN_FOLDER';
@@ -45,13 +44,13 @@ export function upFolder(windowId) {
         program =>
           program.windowId === windowId &&
           program.payload.location.length > 0 &&
-          dispatch(navtigateUpFolder(windowId))
+          dispatch(navtigateUpFolder(windowId)),
       );
 }
 
 export function openFolder(windowId, folderName, folder) {
   return dispatch =>
     checkForPassword(folder, dispatch, () =>
-      dispatch(openNewFolder(windowId, folderName))
+      dispatch(openNewFolder(windowId, folderName)),
     );
 }

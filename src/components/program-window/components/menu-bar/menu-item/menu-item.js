@@ -10,23 +10,11 @@ export default class MenuItem extends Component {
   }
 
   render() {
-    return this.state.selected
-      ? this.selectedMenuItem()
-      : this.unselectedMenuItem();
-  }
-
-  selectedMenuItem() {
     return (
-      <span className="menu-item selected-menu-item">
-        <span className="key-letter">{this.props.name.charAt(0)}</span>
-        {this.props.name.substring(1)}
-      </span>
-    );
-  }
-
-  unselectedMenuItem() {
-    return (
-      <span className="menu-item" onClick={this.clickItem.bind(this)}>
+      <span
+        className={`menu item ${this.state.selected && 'selected-menu-item'}`}
+        onClick={this.clickItem.bind(this)}
+      >
         <span className="key-letter">{this.props.name.charAt(0)}</span>
         {this.props.name.substring(1)}
       </span>

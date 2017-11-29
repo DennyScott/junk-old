@@ -1,29 +1,28 @@
 import { createSelector } from 'reselect';
 import { getExplorerActiveProgramsWithContents } from './drive';
 const getPrograms = state => state.programs;
-const getDrive = state => state.drive;
 const getNotepadPrograms = state => state.notepadPrograms;
 const getExplorerPrograms = state => state.explorerPrograms;
 const getPasswordPrograms = state => state.passwordDialogPrograms;
 
 export const getActivePrograms = createSelector(
   [getNotepadPrograms, getExplorerPrograms, getPasswordPrograms],
-  mapCombinePrograms
+  mapCombinePrograms,
 );
 
 export const getDetailedNotepadActivePrograms = createSelector(
   [getPrograms, getNotepadPrograms],
-  mapDetailedActivePrograms
+  mapDetailedActivePrograms,
 );
 
 export const getDetailedExplorerActivePrograms = createSelector(
   [getPrograms, getExplorerActiveProgramsWithContents],
-  mapDetailedActivePrograms
+  mapDetailedActivePrograms,
 );
 
 export const getDetailedPasswordActivePrograms = createSelector(
   [getPrograms, getPasswordPrograms],
-  mapDetailedActivePrograms
+  mapDetailedActivePrograms,
 );
 
 export const getDetailedActivePrograms = createSelector(
@@ -32,7 +31,7 @@ export const getDetailedActivePrograms = createSelector(
     getDetailedExplorerActivePrograms,
     getDetailedPasswordActivePrograms,
   ],
-  mapCombinePrograms
+  mapCombinePrograms,
 );
 
 function mapDetailedActivePrograms(programs, activePrograms) {

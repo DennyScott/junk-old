@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import MenuItem from './menu-item/menu-item';
 import './menu-bar.css';
 

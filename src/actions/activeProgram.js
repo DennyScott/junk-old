@@ -6,16 +6,6 @@ export const CLOSE_PROGRAM = 'CLOSE_PROGRAM';
 export const HIDE_PROGRAM = 'HIDE_PROGRAM';
 export const FULLSCREEN_PROGRAM = 'FULLSCREEN_PROGRAM';
 
-//Reducer Helpers
-let CURRENT_WINDOW_ID = 0;
-
-const updateStateOfOpenProgram = (state, windowId, updateFunc) => {
-  return state.map(
-    openProgram =>
-      openProgram.windowId === windowId ? updateFunc(openProgram) : openProgram
-  );
-};
-
 //Action Creators
 export function openNewProgram(id, payload) {
   return {
@@ -54,7 +44,7 @@ export function fullscreenProgram(id, windowId, isFullscreen) {
 export function openProgram(file) {
   return dispatch =>
     checkForPassword(file, dispatch, () =>
-      dispatch(openNewProgram(file.filetype, file.payload))
+      dispatch(openNewProgram(file.filetype, file.payload)),
     );
 }
 
@@ -65,7 +55,7 @@ export function checkForPassword(itemToCheck, dispatch, successCallback) {
         neededPassword: itemToCheck.password,
         inputText: '',
         successCallback,
-      })
+      }),
     );
   } else {
     successCallback();
