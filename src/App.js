@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import {game} from './phaser/phaser';
+import { game } from './phaser/phaser';
 import Computer from 'components/computer';
 
 import './App.css';

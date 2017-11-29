@@ -4,17 +4,17 @@ import Desktop from 'components/desktop';
 import Taskbar from 'components/taskbar';
 
 const ComputerDiv = styled.div`
-    height: 100%
-`
+  height: 100%;
+`;
 
 class Computer extends Component {
   render() {
     return (
-        <ComputerDiv>
-            <Desktop />
-            <Taskbar />
-        </ComputerDiv>
-    )
+      <ComputerDiv>
+        <Desktop />
+        <Taskbar />
+      </ComputerDiv>
+    );
   }
 }
 

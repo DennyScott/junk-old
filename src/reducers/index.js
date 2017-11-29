@@ -8,16 +8,15 @@ import { explorerPrograms } from './explorer';
 import { passwordDialogPrograms } from './password-dialog';
 import { notepadPrograms } from './notepad';
 
-
 const rootReducer = combineReducers({
-    programs,
-    explorerPrograms,
-    passwordDialogPrograms,
-    notepadPrograms,
-    switches,
-    variables,
-    drive,
-    user
+  programs,
+  explorerPrograms,
+  passwordDialogPrograms,
+  notepadPrograms,
+  switches,
+  variables,
+  drive,
+  user,
 });
 
 export default rootReducer;
