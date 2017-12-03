@@ -11,7 +11,7 @@
 // }
 
 // function update() {
-  
+
 // }
 
 // export {game};

@@ -4,31 +4,31 @@ import styled from 'styled-components';
 import ProgramWindow from 'components/program-window';
 
 const NotepadText = styled.textarea`
-    overflow: auto;
-    resize: none;
-    height: 100%;
-    width: 100%;
-    padding-left: 10px;
-    border: none;
-`
+  overflow: auto;
+  resize: none;
+  height: 100%;
+  width: 100%;
+  padding-left: 10px;
+  border: none;
+`;
 
 const MainArea = styled.div`
-    text-align: left;
-    font-family: 'Lucida Sans Regular';
-    font-size: 12px;
-    height: calc(100% - 50px);
-    width: 100%;
-`
+  text-align: left;
+  font-family: 'Lucida Sans Regular';
+  font-size: 12px;
+  height: calc(100% - 50px);
+  width: 100%;
+`;
 const notepad = props => (
-    <ProgramWindow program={props.program} displayMenu={true}>
-        <MainArea>
-            <NotepadText defaultValue={props.text} />
-        </MainArea>
-    </ProgramWindow>
+  <ProgramWindow program={props.program} displayMenu={true}>
+    <MainArea>
+      <NotepadText defaultValue={props.text} />
+    </MainArea>
+  </ProgramWindow>
 );
 
 notepad.propTypes = {
-    text: PropTypes.string
+  text: PropTypes.string,
 };
 
 export default notepad;
