@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItem render matches snapshot 1`] = `
+<span
+  className="menu item false"
+  onClick={[Function]}
+>
+  <span
+    className="key-letter"
+  >
+    t
+  </span>
+  est
+</span>
+`;

@@ -29,7 +29,7 @@ const DesktopIcons = styled.div`
   height: 100%;
 `;
 
-class Desktop extends Component {
+export class Desktop extends Component {
   renderProgramWindow() {
     return this.props.activePrograms.map(program => {
       switch (program.id) {

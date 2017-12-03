@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Desktop matches snapshot correctly 1`] = `
+<styled.div>
+  <styled.div />
+  <styled.div />
+</styled.div>
+`;
+
+exports[`DesktopContainer matches snapshot 1`] = `
+<Desktop
+  activePrograms={Array []}
+  createVariable={[Function]}
+  openProgram={[Function]}
+  programs={Array []}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+/>
+`;
