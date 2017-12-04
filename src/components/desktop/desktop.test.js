@@ -1,10 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import DesktopContainer, { Desktop } from './desktop';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { DesktopIcon } from './components/icon';
 
 import * as drive from 'selectors/drive';
 import * as activePrograms from 'selectors/activePrograms';
@@ -50,7 +49,6 @@ it('DesktopContainer matches snapshot', () => {
   expect(toJson(wrapper)).toMatchSnapshot();
 });
 
-//TODO: For travis, needs to use the Desktop Icon but should be Icon test
 // it('DesktopContainer openProgram dispatch called on double click', () => {
 //   const contents = {
 //     something: {

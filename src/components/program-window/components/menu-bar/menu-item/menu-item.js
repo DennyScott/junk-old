@@ -4,7 +4,6 @@ import './menu-item.css';
 export default class MenuItem extends Component {
   constructor(props) {
     super(props);
-    //TODO: Add Proptypes
 
     this.state = {
       selected: false,

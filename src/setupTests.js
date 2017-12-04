@@ -5,7 +5,7 @@ configure({ adapter: new Adapter() });
 
 //Create a Local Storage Mock
 const localStorageMock = (function() {
-  const store = {};
+  let store = {};
   return {
     getItem: key => store[key] || null,
     setItem: (key, value) => (store[key] = value.toString()),
