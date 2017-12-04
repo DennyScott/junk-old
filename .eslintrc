@@ -10,10 +10,17 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
+  "settings": {
+    "jsx": true
+  },
   "rules": {
     "comma-dangle": ["error", "always"],
     "no-console": "off",
     "strict": ["error", "global"],
-    "curly": "warn"
-  }
+    "curly": "warn",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  "plugins": [
+    "react"
+  ]
 }
