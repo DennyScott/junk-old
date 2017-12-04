@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 import DesktopContainer, { Desktop } from './desktop';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import { rendersCorrectly, matchesSnapshot } from 'testUtilities';
 
 import * as drive from 'selectors/drive';
 import * as activePrograms from 'selectors/activePrograms';
@@ -29,14 +30,14 @@ beforeEach(() => {
   });
 });
 
+const getMinComponent = () => <Desktop {...minProps} />
+
 it('Desktop renders correctly', () => {
-  const wrapper = shallow(<Desktop {...minProps} />);
-  expect(wrapper.length).toBe(1);
+  rendersCorrectly(getMinComponent(), expect)
 });
 
 it('Desktop matches snapshot correctly', () => {
-  const wrapper = shallow(<Desktop {...minProps} />);
-  expect(toJson(wrapper)).toMatchSnapshot();
+  matchesSnapshot(getMinComponent(), expect)
 });
 
 it('DesktopContainer renders correctly', () => {
