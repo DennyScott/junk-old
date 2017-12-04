@@ -73,6 +73,41 @@ const traverseHistory = (state, windowId, indexUpdateFunc) => {
   );
 };
 
+const openFolder = (state, action) => {
+  return changeFolderLocation(
+    state,
+    action.windowId,
+    folderLocation =>
+      folderLocation.length > 0
+        ? `${folderLocation}/${action.folder}`
+        : `${action.folder}`
+  );
+}
+
+const upFolder = (state, action) => {
+  return changeFolderLocation(state, action.windowId, folderLocation =>
+    folderLocation.substring(
+      0,
+      folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : 0
+    )
+  );
+}
+
+const backFolder = (state, action) => {
+  return traverseHistory(state, action.windowId, openProgram =>
+    Math.max(openProgram.payload.currentLocationIndex - 1, 0)
+  );
+}
+
+const forwardFolder = (state, action) => {
+  return traverseHistory(state, action.windowId, openProgram =>
+    Math.min(
+      openProgram.payload.currentLocationIndex + 1,
+      openProgram.payload.previousLocations.length - 1
+    )
+  );
+}
+
 export const explorerPrograms = (state = [], action) => {
   switch (action.type) {
     case HIDE_PROGRAM:
@@ -84,32 +119,13 @@ export const explorerPrograms = (state = [], action) => {
     case CLOSE_PROGRAM:
       return closeProgram(state, action, EXPLORER);
     case OPEN_FOLDER:
-      return changeFolderLocation(
-        state,
-        action.windowId,
-        folderLocation =>
-          folderLocation.length > 0
-            ? `${folderLocation}/${action.folder}`
-            : `${action.folder}`
-      );
+      return openFolder(state, action);
     case UP_FOLDER:
-      return changeFolderLocation(state, action.windowId, folderLocation =>
-        folderLocation.substring(
-          0,
-          folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : 0
-        )
-      );
+      return upFolder(state, action);
     case BACK_FOLDER:
-      return traverseHistory(state, action.windowId, openProgram =>
-        Math.max(openProgram.payload.currentLocationIndex - 1, 0)
-      );
+      return backFolder(state, action);
     case FORWARD_FOLDER:
-      return traverseHistory(state, action.windowId, openProgram =>
-        Math.min(
-          openProgram.payload.currentLocationIndex + 1,
-          openProgram.payload.previousLocations.length - 1
-        )
-      );
+      return forwardFolder(state, action);
     default:
       return state;
   }
