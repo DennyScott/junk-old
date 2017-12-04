@@ -5,11 +5,10 @@ engines:
   duplication:
     enabled: true
     config:
-      javascript:
-        mass_threshold: 50
       languages:
       - ruby
-      - javascript
+      - javascript:
+          mass_threshold: 50
       - python
       - php
   eslint:
