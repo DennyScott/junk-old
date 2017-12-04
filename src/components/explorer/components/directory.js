@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const directory = props => (
   <div key={props.objectKey} onClick={() => props.onDirectoryClick(props.objectKey)}>
-    {props.objectKey}
+    <span>{props.objectKey}</span>
   </div>
 );
 
