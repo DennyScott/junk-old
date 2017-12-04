@@ -12,7 +12,7 @@ engines:
         python:
         php:
   eslint:
-    enabled: true
+    enabled: false
     checks:
       comma-dangle:
         enabled: false
