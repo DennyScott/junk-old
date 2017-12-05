@@ -30,24 +30,22 @@ beforeEach(() => {
   });
 });
 
-const getMinComponent = () => <Desktop {...minProps} />
+const getMinComponent = () => <Desktop {...minProps} />;
 
 it('Desktop renders correctly', () => {
-  rendersCorrectly(getMinComponent(), expect)
+  rendersCorrectly(getMinComponent(), expect);
 });
 
 it('Desktop matches snapshot correctly', () => {
-  matchesSnapshot(getMinComponent(), expect)
+  matchesSnapshot(getMinComponent(), expect);
 });
 
 it('DesktopContainer renders correctly', () => {
-  const wrapper = shallow(<DesktopContainer store={store} {...minProps} />);
-  expect(wrapper.length).toBe(1);
+  rendersCorrectly(<DesktopContainer store={store} {...minProps} />, expect);
 });
 
 it('DesktopContainer matches snapshot', () => {
-  const wrapper = shallow(<DesktopContainer store={store} {...minProps} />);
-  expect(toJson(wrapper)).toMatchSnapshot();
+  matchesSnapshot(<DesktopContainer store={store} {...minProps} />, expect);
 });
 
 // it('DesktopContainer openProgram dispatch called on double click', () => {
