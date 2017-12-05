@@ -1,13 +1,17 @@
-.selected-menu-item {
-  background-color: darkslategray;
-  color: white;
+.selected-menu-item
+{
+    color: white;
+    background-color: darkslategray;
 }
 
-.menu-item {
-  margin-right: 15px;
-  cursor: pointer;
+.menu-item
+{
+    margin-right: 15px;
+
+    cursor: pointer;
 }
 
-.key-letter {
-  text-decoration: underline;
+.key-letter
+{
+    text-decoration: underline;
 }
