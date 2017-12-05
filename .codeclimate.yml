@@ -2,7 +2,9 @@
 engines:
   csslint:
     enabled: true
-    order-alphabetical: false
+    checks:
+      order-alphabetical:
+        enabled: false
   duplication:
     enabled: true
     config:
