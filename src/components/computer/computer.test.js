@@ -1,9 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import Computer from './computer';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import { rendersCorrectly, matchesSnapshot } from 'testUtilities';
 
 const minProps = {};

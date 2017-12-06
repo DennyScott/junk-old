@@ -30,34 +30,40 @@ const DesktopIcons = styled.div`
 `;
 
 export class Desktop extends Component {
-  renderProgramWindow() {
-    return this.props.activePrograms.map(program => {
-      switch (program.id) {
-        case NOTEPAD:
-          return (
-            <Notepad
+    renderNotepad(program) {
+    return <Notepad
               key={program.windowId}
               program={program}
               text={program.payload.text}
               className="notepad"
-            />
-          );
-        case EXPLORER:
-          return (
-            <Explorer
-              key={program.windowId}
-              program={program}
-              className="explorer"
-            />
-          );
-        case PASSWORD_DIALOG:
-          return (
-            <PasswordDialog
-              key={program.windowId}
-              program={program}
+            />;
+  }
+
+  renderExplorer(program) {
+    return <Explorer 
+              key={program.windowId} 
+              program={program} 
+              className="explorer" 
+            />;
+  }
+
+  renderPassword(program) {
+    return <PasswordDialog 
+              key={program.windowId} 
+              program={program} 
               className="password-dialog"
-            />
-          );
+            />;
+  }
+
+  renderProgramWindow() {
+    return this.props.activePrograms.map(program => {
+      switch (program.id) {
+        case NOTEPAD:
+          return this.renderNotepad(program);
+        case EXPLORER:
+          return this.renderExplorer(program);
+        case PASSWORD_DIALOG:
+          return this.renderPassword(program);
         default:
           return null;
       }

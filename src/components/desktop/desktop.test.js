@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import DesktopContainer, { Desktop } from './desktop';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -34,6 +33,14 @@ const getMinComponent = (otherProps = {}) => (
   <Desktop {...minProps} {...otherProps} />
 );
 
+const createSimpleProgram = (id="") => ({
+  windowId: 0, 
+  id, 
+  payload: { 
+    text: 'test' 
+  },
+});
+
 it('Desktop renders correctly', () => {
   rendersCorrectly(getMinComponent(), expect);
 });
@@ -63,23 +70,19 @@ it('no Id will create a no component', () => {
 });
 
 it('Notepad Id will create a notepad component', () => {
-  const program = { windowId: 0, id: 'NOTEPAD', payload: { text: 'test' } };
+  const program = createSimpleProgram('NOTEPAD');
   const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
   expect(wrapper.find('.notepad').length).toBe(1);
 });
 
 it('Explorer Id will create an explorer component', () => {
-  const program = { windowId: 0, id: 'EXPLORER', payload: { text: 'test' } };
+  const program = createSimpleProgram('EXPLORER');
   const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
   expect(wrapper.find('.explorer').length).toBe(1);
 });
 
 it('PASSWORD_DIALOG Id will create a password-dialog component', () => {
-  const program = {
-    windowId: 0,
-    id: 'PASSWORD_DIALOG',
-    payload: { text: 'test' },
-  };
+  const program = createSimpleProgram('PASSWORD_DIALOG');
   const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
   expect(wrapper.find('.password-dialog').length).toBe(1);
 });
