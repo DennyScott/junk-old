@@ -7,9 +7,9 @@ const minProps = {};
 const getMinComponent = () => <Computer {...minProps} />;
 
 it('Computer renders correctly', () => {
-  rendersCorrectly(getMinComponent(), expect);
+  rendersCorrectly(getMinComponent());
 });
 
 it('Computer matches snapshot correctly', () => {
-  matchesSnapshot(getMinComponent(), expect);
+  matchesSnapshot(getMinComponent());
 });

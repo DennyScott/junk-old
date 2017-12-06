@@ -41,48 +41,48 @@ const createSimpleProgram = (id="") => ({
   },
 });
 
-const expectProgramToBeCreated = (id, selector, amount, expect) => {
+const expectProgramToBeCreated = (id, selector, amount) => {
   const program = createSimpleProgram(id);
   const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
   expect(wrapper.find(selector).length).toBe(amount);
 }
 
-const expectProgramToBeListed = (id, amount, expect) => {
+const expectProgramToBeListed = (id, amount) => {
   const program = createSimpleProgram(id);
   const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
   expect(wrapper.find('.open-windows').children().length).toBe(amount);
 }
 
 it('Desktop renders correctly', () => {
-  rendersCorrectly(getMinComponent(), expect);
+  rendersCorrectly(getMinComponent());
 });
 
 it('Desktop matches snapshot correctly', () => {
-  matchesSnapshot(getMinComponent(), expect);
+  matchesSnapshot(getMinComponent());
 });
 
 it('DesktopContainer renders correctly', () => {
-  rendersCorrectly(<DesktopContainer store={store} {...minProps} />, expect);
+  rendersCorrectly(<DesktopContainer store={store} {...minProps} />);
 });
 
 it('DesktopContainer matches snapshot', () => {
-  matchesSnapshot(<DesktopContainer store={store} {...minProps} />, expect);
+  matchesSnapshot(<DesktopContainer store={store} {...minProps} />);
 });
 
 it('a real Id will create a a program component', () => {
-  expectProgramToBeListed('NOTEPAD', 1, expect);
+  expectProgramToBeListed('NOTEPAD', 1);
 });
 
 it('no Id will create a no component', () => {
-  expectProgramToBeListed('', 0, expect);
+  expectProgramToBeListed('', 0);
 });
 
 it('Notepad Id will create a notepad component', () => {
-  expectProgramToBeCreated('NOTEPAD', '.notepad', 1, expect);
+  expectProgramToBeCreated('NOTEPAD', '.notepad', 1);
 });
 
 it('Explorer Id will create an explorer component', () => {
-  expectProgramToBeCreated('EXPLORER', '.explorer', 1, expect);
+  expectProgramToBeCreated('EXPLORER', '.explorer', 1);
 });
 
 it('PASSWORD_DIALOG Id will create a password-dialog component', () => {
