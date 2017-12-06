@@ -35,3 +35,8 @@ it('The app name is displayed', () => {
   const wrapper = shallow(<Icon {...minProps} name={appName} />);
   expect(toJson(wrapper.find('.app-name').children())).toBe(appName);
 });
+
+it('should be a draggable component', () => {
+  const wrapper = shallow(getMinComponent());
+  expect(wrapper.find('Draggable').length).toBe(1);
+});

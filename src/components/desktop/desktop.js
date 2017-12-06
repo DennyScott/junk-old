@@ -39,12 +39,25 @@ export class Desktop extends Component {
               key={program.windowId}
               program={program}
               text={program.payload.text}
+              className="notepad"
             />
           );
         case EXPLORER:
-          return <Explorer key={program.windowId} program={program} />;
+          return (
+            <Explorer
+              key={program.windowId}
+              program={program}
+              className="explorer"
+            />
+          );
         case PASSWORD_DIALOG:
-          return <PasswordDialog key={program.windowId} program={program} />;
+          return (
+            <PasswordDialog
+              key={program.windowId}
+              program={program}
+              className="password-dialog"
+            />
+          );
         default:
           return null;
       }
@@ -67,7 +80,9 @@ export class Desktop extends Component {
           ))}
         </DesktopIcons>
 
-        <OpenWindows>{this.renderProgramWindow()}</OpenWindows>
+        <OpenWindows className="open-windows">
+          {this.renderProgramWindow()}
+        </OpenWindows>
       </DesktopDiv>
     );
   }

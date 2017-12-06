@@ -30,7 +30,9 @@ beforeEach(() => {
   });
 });
 
-const getMinComponent = () => <Desktop {...minProps} />;
+const getMinComponent = (otherProps = {}) => (
+  <Desktop {...minProps} {...otherProps} />
+);
 
 it('Desktop renders correctly', () => {
   rendersCorrectly(getMinComponent(), expect);
@@ -48,20 +50,36 @@ it('DesktopContainer matches snapshot', () => {
   matchesSnapshot(<DesktopContainer store={store} {...minProps} />, expect);
 });
 
-// it('DesktopContainer openProgram dispatch called on double click', () => {
-//   const contents = {
-//     something: {
-//       logo: 'img.png',
-//     },
-//   };
+it('a real Id will create a a program component', () => {
+  const program = { windowId: 0, id: 'NOTEPAD', payload: { text: 'test' } };
+  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
+  expect(wrapper.find('.open-windows').children().length).toBe(1);
+});
 
-//   drive.getDesktopContents = jest.fn(() => contents);
+it('no Id will create a no component', () => {
+  const program = { windowId: 0, id: '', payload: { text: 'test' } };
+  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
+  expect(wrapper.find('.open-windows').children().length).toBe(0);
+});
 
-//   const wrapper = mount(<DesktopContainer store={store} {...minProps} />);
-//   console.log(store.getState());
-//   const state = store.getState();
-//   const spy = jest.spyOn(state, 'openProgram');
+it('Notepad Id will create a notepad component', () => {
+  const program = { windowId: 0, id: 'NOTEPAD', payload: { text: 'test' } };
+  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
+  expect(wrapper.find('.notepad').length).toBe(1);
+});
 
-//   wrapper.find(DesktopIcon).simulate('doubleClick');
-//   expect(spy).toHaveBeenCalled();
-// });
+it('Explorer Id will create an explorer component', () => {
+  const program = { windowId: 0, id: 'EXPLORER', payload: { text: 'test' } };
+  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
+  expect(wrapper.find('.explorer').length).toBe(1);
+});
+
+it('PASSWORD_DIALOG Id will create a password-dialog component', () => {
+  const program = {
+    windowId: 0,
+    id: 'PASSWORD_DIALOG',
+    payload: { text: 'test' },
+  };
+  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
+  expect(wrapper.find('.password-dialog').length).toBe(1);
+});

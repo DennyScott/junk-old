@@ -3,7 +3,9 @@
 exports[`Desktop matches snapshot correctly 1`] = `
 <styled.div>
   <styled.div />
-  <styled.div />
+  <styled.div
+    className="open-windows"
+  />
 </styled.div>
 `;
 
