@@ -73,7 +73,7 @@ export class Desktop extends Component {
   render() {
     return (
       <DesktopDiv>
-        <DesktopIcons>
+        <DesktopIcons className="desktop-icons">
           {Object.keys(this.props.contents).map(key => (
             <Icon
               key={key}
@@ -94,13 +94,13 @@ export class Desktop extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   contents: getDesktopContents(state),
   programs: state.programs,
   activePrograms: getDetailedActivePrograms(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   openProgram: program => dispatch(openProgram(program)),
   createVariable: (variableName, payload) =>
     dispatch(storeVariable(variableName, payload)),

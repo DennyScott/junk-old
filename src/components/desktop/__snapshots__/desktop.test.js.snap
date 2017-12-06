@@ -2,7 +2,9 @@
 
 exports[`Desktop matches snapshot correctly 1`] = `
 <styled.div>
-  <styled.div />
+  <styled.div
+    className="desktop-icons"
+  />
   <styled.div
     className="open-windows"
   />

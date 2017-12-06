@@ -1,15 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DesktopContainer, { Desktop } from './desktop';
+import DesktopContainer, { Desktop, mapDispatchToProps } from './desktop';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { rendersCorrectly, matchesSnapshot } from 'testUtilities';
 
 import * as drive from 'selectors/drive';
 import * as activePrograms from 'selectors/activePrograms';
+import * as activeProgramActions from 'actions/activeProgram';
 
 drive.getDesktopContents = jest.fn(() => {});
 activePrograms.getDetailedActivePrograms = jest.fn(() => []);
+activeProgramActions.openProgram = jest.fn();
 
 const mockStore = configureMockStore([thunk]);
 
@@ -31,6 +33,10 @@ beforeEach(() => {
 
 const getMinComponent = (otherProps = {}) => (
   <Desktop {...minProps} {...otherProps} />
+);
+
+const getMinContainerComponent = (otherProps = {}) => (
+  <DesktopContainer store={store} {...minProps} />
 );
 
 const createSimpleProgram = (id="") => ({
@@ -62,11 +68,11 @@ it('Desktop matches snapshot correctly', () => {
 });
 
 it('DesktopContainer renders correctly', () => {
-  rendersCorrectly(<DesktopContainer store={store} {...minProps} />);
+  rendersCorrectly(getMinContainerComponent());
 });
 
 it('DesktopContainer matches snapshot', () => {
-  matchesSnapshot(<DesktopContainer store={store} {...minProps} />);
+  matchesSnapshot(getMinContainerComponent());
 });
 
 it('a real Id will create a a program component', () => {
@@ -88,3 +94,19 @@ it('Explorer Id will create an explorer component', () => {
 it('PASSWORD_DIALOG Id will create a password-dialog component', () => {
   expectProgramToBeCreated('PASSWORD_DIALOG', '.password-dialog', 1, expect);
 });
+
+it('Passing in contents will result in an icon being added to the desktop', () => {
+  const icon = {logo: 'someLogo'};
+  const wrapper = shallow(getMinComponent({ contents: {'myComputer': icon } }));
+  expect(wrapper.find('.desktop-icons').children().length).toBe(1);
+});
+
+it('calling the openProgram in dispatch calls the openProgram action', () => {
+  const dispatchSpy = jest.fn();
+  const {openProgram} = mapDispatchToProps(dispatchSpy);
+  const spy = jest.spyOn(activeProgramActions, 'openProgram');
+  openProgram();
+  expect(spy).toHaveBeenCalled();
+});
+
+
