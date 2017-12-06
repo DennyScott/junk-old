@@ -41,6 +41,12 @@ const createSimpleProgram = (id="") => ({
   },
 });
 
+const expectProgramToBeCreated = (id, selector, amount, expect) => {
+  const program = createSimpleProgram(id);
+  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
+  expect(wrapper.find(selector).length).toBe(amount);
+}
+
 it('Desktop renders correctly', () => {
   rendersCorrectly(getMinComponent(), expect);
 });
@@ -58,31 +64,21 @@ it('DesktopContainer matches snapshot', () => {
 });
 
 it('a real Id will create a a program component', () => {
-  const program = { windowId: 0, id: 'NOTEPAD', payload: { text: 'test' } };
-  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
-  expect(wrapper.find('.open-windows').children().length).toBe(1);
+  expectProgramToBeCreated('NOTEPAD', '.open-windows', 1, expect);
 });
 
 it('no Id will create a no component', () => {
-  const program = { windowId: 0, id: '', payload: { text: 'test' } };
-  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
-  expect(wrapper.find('.open-windows').children().length).toBe(0);
+  expectProgramToBeCreated('', '.open-windows', 0, expect);
 });
 
 it('Notepad Id will create a notepad component', () => {
-  const program = createSimpleProgram('NOTEPAD');
-  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
-  expect(wrapper.find('.notepad').length).toBe(1);
+  expectProgramToBeCreated('NOTEPAD', '.notepad', 1, expect);
 });
 
 it('Explorer Id will create an explorer component', () => {
-  const program = createSimpleProgram('EXPLORER');
-  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
-  expect(wrapper.find('.explorer').length).toBe(1);
+  expectProgramToBeCreated('EXPLORER', '.explorer', 1, expect);
 });
 
 it('PASSWORD_DIALOG Id will create a password-dialog component', () => {
-  const program = createSimpleProgram('PASSWORD_DIALOG');
-  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
-  expect(wrapper.find('.password-dialog').length).toBe(1);
+  expectProgramToBeCreated('PASSWORD_DIALOG', '.password', 1, expect);
 });
