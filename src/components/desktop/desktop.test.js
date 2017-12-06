@@ -47,6 +47,12 @@ const expectProgramToBeCreated = (id, selector, amount, expect) => {
   expect(wrapper.find(selector).length).toBe(amount);
 }
 
+const expectProgramToBeListed = (id, amount, expect) => {
+  const program = createSimpleProgram(id);
+  const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
+  expect(wrapper.find('.open-windows').children().length).toBe(amount);
+}
+
 it('Desktop renders correctly', () => {
   rendersCorrectly(getMinComponent(), expect);
 });
@@ -64,11 +70,11 @@ it('DesktopContainer matches snapshot', () => {
 });
 
 it('a real Id will create a a program component', () => {
-  expectProgramToBeCreated('NOTEPAD', '.open-windows', 1, expect);
+  expectProgramToBeListed('NOTEPAD', 1, expect);
 });
 
 it('no Id will create a no component', () => {
-  expectProgramToBeCreated('', '.open-windows', 0, expect);
+  expectProgramToBeListed('', 0, expect);
 });
 
 it('Notepad Id will create a notepad component', () => {
@@ -80,5 +86,5 @@ it('Explorer Id will create an explorer component', () => {
 });
 
 it('PASSWORD_DIALOG Id will create a password-dialog component', () => {
-  expectProgramToBeCreated('PASSWORD_DIALOG', '.password', 1, expect);
+  expectProgramToBeCreated('PASSWORD_DIALOG', '.password-dialog', 1, expect);
 });
