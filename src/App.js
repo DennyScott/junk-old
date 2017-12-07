@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Computer from 'components/computer/computer';
+import Computer from 'components/computer/';
 
 import './App.css';
 
