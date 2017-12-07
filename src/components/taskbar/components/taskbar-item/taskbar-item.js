@@ -33,7 +33,7 @@ const TaskbarItemName = styled.span`
 const taskbarItem = props => (
   <TaskbarItemWrapper onClick={() => props.onClick()}>
     <TaskbarItemIcon src={notepadIcon} />
-    <TaskbarItemName>{props.name}</TaskbarItemName>
+    <TaskbarItemName className="taskbar-item-name">{props.name}</TaskbarItemName>
   </TaskbarItemWrapper>
 );
 
