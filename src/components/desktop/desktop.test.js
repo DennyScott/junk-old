@@ -104,19 +104,20 @@ it('Passing in contents will result in an icon being added to the desktop', () =
   expect(wrapper.find('.desktop-icons').children().length).toBe(1);
 });
 
-it('calling the openProgram in dispatch calls the openProgram action', () => {
-  const dispatchSpy = jest.fn();
-  const { openProgram } = mapDispatchToProps(dispatchSpy);
-  const spy = jest.spyOn(activeProgramActions, 'openProgram');
-  openProgram();
+const testOpenProgram = (actionsObject, methodName, functionToTrigger) => {
+  const spy = jest.spyOn(actionsObject, methodName);
+  functionToTrigger();
   expect(spy).toHaveBeenCalled();
+};
+
+it('calling the openProgram in dispatch calls the openProgram action', () => {
+  const { openProgram } = mapDispatchToProps(jest.fn());
+  testOpenProgram(activeProgramActions, 'openProgram', openProgram);
 });
 
 it('Icon recieves the openProgram prop', () => {
   const icon = { logo: 'someLogo' };
   const dispatchSpy = jest.fn();
-  const { openProgram } = mapDispatchToProps(dispatchSpy);
-  const spy = jest.spyOn(activeProgramActions, 'openProgram');
   const wrapper = mount(getMinComponent({ contents: { myComputer: icon } }));
 
   const actionOpenProgram = toJson(wrapper.find('[name="myComputer"]')).node
@@ -126,9 +127,6 @@ it('Icon recieves the openProgram prop', () => {
 });
 
 it('calling the createVariable in dispatch calls the createVariable action', () => {
-  const dispatchSpy = jest.fn();
-  const { createVariable } = mapDispatchToProps(dispatchSpy);
-  const spy = jest.spyOn(variables, 'storeVariable');
-  createVariable();
-  expect(spy).toHaveBeenCalled();
+  const { createVariable } = mapDispatchToProps(jest.fn());
+  testOpenProgram(variables, 'storeVariable', createVariable);
 });
