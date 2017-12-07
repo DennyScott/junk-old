@@ -26,7 +26,6 @@ const menutray = props => (
     <ComputerTime>
       {moment
         .utc(moment.now())
-        .local()
         .format('LT')}
     </ComputerTime>
   </MenuTray>

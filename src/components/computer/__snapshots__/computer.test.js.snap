@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Computer matches snapshot correctly 1`] = `
+<styled.div>
+  <Connect(Desktop) />
+  <Connect(Taskbar) />
+</styled.div>
+`;

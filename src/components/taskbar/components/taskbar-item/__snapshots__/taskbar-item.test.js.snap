@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskbarItem render matches snapshot 1`] = `
+<styled.div
+  onClick={[Function]}
+>
+  <styled.img />
+  <styled.span
+    className="taskbar-item-name"
+  />
+</styled.div>
+`;

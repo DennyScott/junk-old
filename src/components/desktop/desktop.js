@@ -30,21 +30,42 @@ const DesktopIcons = styled.div`
 `;
 
 export class Desktop extends Component {
+  renderNotepad(program) {
+    return (
+      <Notepad
+        key={program.windowId}
+        program={program}
+        text={program.payload.text}
+        className="notepad"
+      />
+    );
+  }
+
+  renderExplorer(program) {
+    return (
+      <Explorer key={program.windowId} program={program} className="explorer" />
+    );
+  }
+
+  renderPassword(program) {
+    return (
+      <PasswordDialog
+        key={program.windowId}
+        program={program}
+        className="password-dialog"
+      />
+    );
+  }
+
   renderProgramWindow() {
     return this.props.activePrograms.map(program => {
       switch (program.id) {
         case NOTEPAD:
-          return (
-            <Notepad
-              key={program.windowId}
-              program={program}
-              text={program.payload.text}
-            />
-          );
+          return this.renderNotepad(program);
         case EXPLORER:
-          return <Explorer key={program.windowId} program={program} />;
+          return this.renderExplorer(program);
         case PASSWORD_DIALOG:
-          return <PasswordDialog key={program.windowId} program={program} />;
+          return this.renderPassword(program);
         default:
           return null;
       }
@@ -54,7 +75,7 @@ export class Desktop extends Component {
   render() {
     return (
       <DesktopDiv>
-        <DesktopIcons>
+        <DesktopIcons className="desktop-icons">
           {Object.keys(this.props.contents).map(key => (
             <Icon
               key={key}
@@ -67,19 +88,21 @@ export class Desktop extends Component {
           ))}
         </DesktopIcons>
 
-        <OpenWindows>{this.renderProgramWindow()}</OpenWindows>
+        <OpenWindows className="open-windows">
+          {this.renderProgramWindow()}
+        </OpenWindows>
       </DesktopDiv>
     );
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   contents: getDesktopContents(state),
   programs: state.programs,
   activePrograms: getDetailedActivePrograms(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   openProgram: program => dispatch(openProgram(program)),
   createVariable: (variableName, payload) =>
     dispatch(storeVariable(variableName, payload)),
