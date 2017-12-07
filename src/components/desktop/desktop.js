@@ -30,29 +30,31 @@ const DesktopIcons = styled.div`
 `;
 
 export class Desktop extends Component {
-    renderNotepad(program) {
-    return <Notepad
-              key={program.windowId}
-              program={program}
-              text={program.payload.text}
-              className="notepad"
-            />;
+  renderNotepad(program) {
+    return (
+      <Notepad
+        key={program.windowId}
+        program={program}
+        text={program.payload.text}
+        className="notepad"
+      />
+    );
   }
 
   renderExplorer(program) {
-    return <Explorer 
-              key={program.windowId} 
-              program={program} 
-              className="explorer" 
-            />;
+    return (
+      <Explorer key={program.windowId} program={program} className="explorer" />
+    );
   }
 
   renderPassword(program) {
-    return <PasswordDialog 
-              key={program.windowId} 
-              program={program} 
-              className="password-dialog"
-            />;
+    return (
+      <PasswordDialog
+        key={program.windowId}
+        program={program}
+        className="password-dialog"
+      />
+    );
   }
 
   renderProgramWindow() {

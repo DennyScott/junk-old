@@ -1,17 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import DesktopContainer, { Desktop, mapDispatchToProps } from './desktop';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { rendersCorrectly, matchesSnapshot } from 'testUtilities';
+import toJson from 'enzyme-to-json';
 
 import * as drive from 'selectors/drive';
 import * as activePrograms from 'selectors/activePrograms';
 import * as activeProgramActions from 'actions/activeProgram';
+import * as variables from 'actions/variable';
 
 drive.getDesktopContents = jest.fn(() => {});
 activePrograms.getDetailedActivePrograms = jest.fn(() => []);
 activeProgramActions.openProgram = jest.fn();
+variables.storeVariable = jest.fn();
 
 const mockStore = configureMockStore([thunk]);
 
@@ -36,14 +39,14 @@ const getMinComponent = (otherProps = {}) => (
 );
 
 const getMinContainerComponent = (otherProps = {}) => (
-  <DesktopContainer store={store} {...minProps} />
+  <DesktopContainer store={store} {...minProps} {...otherProps} />
 );
 
-const createSimpleProgram = (id="") => ({
-  windowId: 0, 
-  id, 
-  payload: { 
-    text: 'test' 
+const createSimpleProgram = (id = '') => ({
+  windowId: 0,
+  id,
+  payload: {
+    text: 'test',
   },
 });
 
@@ -51,13 +54,13 @@ const expectProgramToBeCreated = (id, selector, amount) => {
   const program = createSimpleProgram(id);
   const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
   expect(wrapper.find(selector).length).toBe(amount);
-}
+};
 
 const expectProgramToBeListed = (id, amount) => {
   const program = createSimpleProgram(id);
   const wrapper = shallow(getMinComponent({ activePrograms: [program] }));
   expect(wrapper.find('.open-windows').children().length).toBe(amount);
-}
+};
 
 it('Desktop renders correctly', () => {
   rendersCorrectly(getMinComponent());
@@ -96,17 +99,36 @@ it('PASSWORD_DIALOG Id will create a password-dialog component', () => {
 });
 
 it('Passing in contents will result in an icon being added to the desktop', () => {
-  const icon = {logo: 'someLogo'};
-  const wrapper = shallow(getMinComponent({ contents: {'myComputer': icon } }));
+  const icon = { logo: 'someLogo' };
+  const wrapper = shallow(getMinComponent({ contents: { myComputer: icon } }));
   expect(wrapper.find('.desktop-icons').children().length).toBe(1);
 });
 
 it('calling the openProgram in dispatch calls the openProgram action', () => {
   const dispatchSpy = jest.fn();
-  const {openProgram} = mapDispatchToProps(dispatchSpy);
+  const { openProgram } = mapDispatchToProps(dispatchSpy);
   const spy = jest.spyOn(activeProgramActions, 'openProgram');
   openProgram();
   expect(spy).toHaveBeenCalled();
 });
 
+it('Icon recieves the openProgram prop', () => {
+  const icon = { logo: 'someLogo' };
+  const dispatchSpy = jest.fn();
+  const { openProgram } = mapDispatchToProps(dispatchSpy);
+  const spy = jest.spyOn(activeProgramActions, 'openProgram');
+  const wrapper = mount(getMinComponent({ contents: { myComputer: icon } }));
 
+  const actionOpenProgram = toJson(wrapper.find('[name="myComputer"]')).node
+    .props.onDoubleClick;
+
+  expect(typeof actionOpenProgram).toBe('function');
+});
+
+it('calling the createVariable in dispatch calls the createVariable action', () => {
+  const dispatchSpy = jest.fn();
+  const { createVariable } = mapDispatchToProps(dispatchSpy);
+  const spy = jest.spyOn(variables, 'storeVariable');
+  createVariable();
+  expect(spy).toHaveBeenCalled();
+});
