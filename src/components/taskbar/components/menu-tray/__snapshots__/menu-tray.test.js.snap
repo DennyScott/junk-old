@@ -3,7 +3,7 @@
 exports[`MenuTray render matches snapshot 1`] = `
 <styled.div>
   <styled.div>
-    3:00 AM
+    8:00 AM
   </styled.div>
 </styled.div>
 `;
