@@ -1,6 +1,4 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import MenuTray from './menu-tray';
 import { rendersCorrectly, matchesSnapshot } from 'testUtilities';
 
