@@ -11,5 +11,6 @@ it('MenuTray renders correctly', () => {
 });
 
 it('MenuTray render matches snapshot', () => {
+  Date.now = jest.fn(() => new Date(Date.UTC(2017, 7, 9, 8)).valueOf());
   matchesSnapshot(getMinComponent(), expect);
 });
