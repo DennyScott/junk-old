@@ -117,7 +117,6 @@ it('calling the openProgram in dispatch calls the openProgram action', () => {
 
 it('Icon recieves the openProgram prop', () => {
   const icon = { logo: 'someLogo' };
-  const dispatchSpy = jest.fn();
   const wrapper = mount(getMinComponent({ contents: { myComputer: icon } }));
 
   const actionOpenProgram = toJson(wrapper.find('[name="myComputer"]')).node
