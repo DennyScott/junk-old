@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuTray render matches snapshot 1`] = `
+<styled.div>
+  <styled.div>
+    10:22 PM
+  </styled.div>
+</styled.div>
+`;
