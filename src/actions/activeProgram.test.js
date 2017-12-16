@@ -1,4 +1,5 @@
 import * as activeProgram from './activeProgram';
+import { PASSWORD_DIALOG } from 'programs';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -65,16 +66,20 @@ it('openProgram with no password returns a new OpenProgram action', () => {
         payload: "testPayload"
     };
 
-    const expectedOutcome = {
-        type: activeProgram.OPEN_PROGRAM,
-        id: file.filetype,
-        payload: file.payload
-    }
-
     store.dispatch(activeProgram.openProgram(file));
-    expect(store.getActions()[0]).toMatchObject(expectedOutcome);
+    expect(store.getActions()[0].type).toBe(activeProgram.OPEN_PROGRAM);
 });
 
-it('openProgram with a password returns a new OpenProgram action', () => {
+it('openProgram with a password returns a password dialog action', () => {
+    const mockStore = configureMockStore([thunk]);
+    const store = mockStore({});
 
+    const file = {
+        filetype: "test",
+        payload: "testPayload",
+        password: "anything"
+    };
+
+    store.dispatch(activeProgram.openProgram(file));
+    expect(store.getActions()[0].id).toBe(PASSWORD_DIALOG);
 });
