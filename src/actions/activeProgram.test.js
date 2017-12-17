@@ -3,9 +3,16 @@ import { PASSWORD_DIALOG } from 'programs';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+const getBasicWindow = (type) => ({
+    type,
+    id: 'test',
+    windowId: 0
+})
+
 it('openNewProgram returns a new action', () => {
     var id = "test";
     var payload = "test payload";
+
     var expectedOutcome = {
         type: activeProgram.OPEN_PROGRAM,
         id,
@@ -15,46 +22,31 @@ it('openNewProgram returns a new action', () => {
 });
 
 it('closeProgram returns a new action', () => {
-    var id = "test";
-    var windowId = 0;
-
     var expectedOutcome = {
-        type: activeProgram.CLOSE_PROGRAM,
-        id,
-        windowId
+        ...getBasicWindow(activeProgram.CLOSE_PROGRAM),
     }
 
-    expect(activeProgram.closeProgram(id, windowId)).toMatchObject(expectedOutcome);
+    expect(activeProgram.closeProgram(expectedOutcome.id, expectedOutcome.windowId)).toMatchObject(expectedOutcome);
 });
 
 it('hideProgram returns a new action', () => {
-    var id = "test";
-    var windowId = 0;
-    var isShowing = true;
 
     var expectedOutcome = {
-        type: activeProgram.HIDE_PROGRAM,
-        id,
-        windowId,
-        isShowing
+        ...getBasicWindow(activeProgram.HIDE_PROGRAM),
+        isShowing: true
     }
 
-    expect(activeProgram.hideProgram(id, windowId, isShowing)).toMatchObject(expectedOutcome);
+    expect(activeProgram.hideProgram(expectedOutcome.id, expectedOutcome.windowId, expectedOutcome.isShowing)).toMatchObject(expectedOutcome);
 });
 
 it('fullscreenProgram returns a new action', () => {
-    var id = "test";
-    var windowId = 0;
-    var isFullscreen = true;
 
     var expectedOutcome = {
-        type: activeProgram.FULLSCREEN_PROGRAM,
-        id,
-        windowId,
-        isFullscreen
+        ...getBasicWindow(activeProgram.FULLSCREEN_PROGRAM),
+        isFullscreen: true
     }
 
-    expect(activeProgram.fullscreenProgram(id, windowId, isFullscreen)).toMatchObject(expectedOutcome);
+    expect(activeProgram.fullscreenProgram(expectedOutcome.id, expectedOutcome.windowId, expectedOutcome.isFullscreen)).toMatchObject(expectedOutcome);
 });
 
 it('openProgram with no password returns a new OpenProgram action', () => {
