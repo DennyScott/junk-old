@@ -29,24 +29,26 @@ it('closeProgram returns a new action', () => {
     expect(activeProgram.closeProgram(expectedOutcome.id, expectedOutcome.windowId)).toMatchObject(expectedOutcome);
 });
 
+const createWindowAction = (type, activatedProperty) => {
+    var val = {
+        ...getBasicWindow(type),
+    }
+    val[activatedProperty] = true;
+    return val;
+}
+
 it('hideProgram returns a new action', () => {
 
-    var expectedOutcome = {
-        ...getBasicWindow(activeProgram.HIDE_PROGRAM),
-        isShowing: true
-    }
+    var expectedOutcome = createWindowAction(activeProgram.HIDE_PROGRAM, "isShowing");
 
     expect(activeProgram.hideProgram(expectedOutcome.id, expectedOutcome.windowId, expectedOutcome.isShowing)).toMatchObject(expectedOutcome);
 });
 
 it('fullscreenProgram returns a new action', () => {
 
-    var output = {
-        ...getBasicWindow(activeProgram.FULLSCREEN_PROGRAM),
-        isFullscreen: true
-    }
+    var expectedOutcome = createWindowAction(activeProgram.FULLSCREEN_PROGRAM, "isFullscreen");
 
-    expect(activeProgram.fullscreenProgram(output.id, output.windowId, output.isFullscreen)).toMatchObject(expectedOutcome);
+    expect(activeProgram.fullscreenProgram(expectedOutcome.id, expectedOutcome.windowId, expectedOutcome.isFullscreen)).toMatchObject(expectedOutcome);
 });
 
 it('openProgram with no password returns a new OpenProgram action', () => {
