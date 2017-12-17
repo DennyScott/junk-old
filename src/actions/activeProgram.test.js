@@ -41,12 +41,12 @@ it('hideProgram returns a new action', () => {
 
 it('fullscreenProgram returns a new action', () => {
 
-    var expectedOutcome = {
+    var output = {
         ...getBasicWindow(activeProgram.FULLSCREEN_PROGRAM),
         isFullscreen: true
     }
 
-    expect(activeProgram.fullscreenProgram(expectedOutcome.id, expectedOutcome.windowId, expectedOutcome.isFullscreen)).toMatchObject(expectedOutcome);
+    expect(activeProgram.fullscreenProgram(output.id, output.windowId, output.isFullscreen)).toMatchObject(expectedOutcome);
 });
 
 it('openProgram with no password returns a new OpenProgram action', () => {
