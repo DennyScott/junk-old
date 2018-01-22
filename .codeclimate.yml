@@ -10,7 +10,7 @@ engines:
     config:
       languages:
         javascript:
-            mass_threshold: 52
+            mass_threshold: 67
         ruby:
         python:
         php:
