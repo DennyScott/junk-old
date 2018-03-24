@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SingleInputWindow } from 'components/program-window';
-import { closeProgram } from 'actions/activeProgram';
-import { updatePasswordInput } from 'actions/password-dialog';
+import { updatePasswordInput } from './';
 
 class PasswordDialog extends Component {
   static propTypes = {
@@ -32,7 +31,7 @@ class PasswordDialog extends Component {
         onInputChange={input =>
           this.props.updatePasswordInput(
             this.props.program.windowId,
-            input.target.value
+            input.target.value,
           )
         }
         description="Please submit the correct password"
@@ -43,7 +42,6 @@ class PasswordDialog extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  closeProgram: (id, windowId) => dispatch(closeProgram(id, windowId)),
   updatePasswordInput: (windowId, input) =>
     dispatch(updatePasswordInput(windowId, input)),
 });
