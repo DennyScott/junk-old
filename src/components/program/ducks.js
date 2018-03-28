@@ -66,13 +66,13 @@ let CURRENT_WINDOW_ID = 0;
 
 //Reducer Helpers
 
-export const updateStateOfOpenProgram = (state, windowId, updateFunc) =>
+export const updateStateOfOpenProgramReducer = (state, windowId, updateFunc) =>
   state.map(
     openProgram =>
-      openProgram.windowId === windowId ? updateFunc(openProgram) : openProgram
+      openProgram.windowId === windowId ? updateFunc(openProgram) : openProgram,
   );
 
-export const openProgramHelper = (state, action, expectedProgramId) =>
+export const openProgramReducer = (state, action, expectedProgramId) =>
   action.id === expectedProgramId
     ? [
         ...state,
@@ -86,26 +86,25 @@ export const openProgramHelper = (state, action, expectedProgramId) =>
       ]
     : state;
 
-export const fullscreenProgram = (state, action, expectedProgramId) =>
+export const fullscreenProgramReducer = (state, action, expectedProgramId) =>
   action.id === expectedProgramId
-    ? updateStateOfOpenProgram(state, action.windowId, openProgram => ({
+    ? updateStateOfOpenProgramReducer(state, action.windowId, openProgram => ({
         ...openProgram,
         isFullscreen: action.isFullscreen,
       }))
     : state;
 
-export const hideProgram = (state, action, expectedProgramId) => {
+export const hideProgramReducer = (state, action, expectedProgramId) => {
   const { id, windowId, isShowing } = action;
   if (id === expectedProgramId)
-    return updateStateOfOpenProgram(state, windowId, openProgram => ({
+    return updateStateOfOpenProgramReducer(state, windowId, openProgram => ({
       ...openProgram,
       isShowing,
     }));
   return state;
 };
 
-export const closeProgram = (state, action, expectedProgramId) =>
+export const closeProgramReducer = (state, action, expectedProgramId) =>
   action.id === expectedProgramId
     ? state.filter(openProgram => openProgram.windowId !== action.windowId)
     : state;
-

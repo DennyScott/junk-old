@@ -1,5 +1,5 @@
 import store from 'store';
-import { checkForPassword } from './activeProgram';
+import { checkForPassword } from '../components/program/ducks';
 //Actions
 export const OPEN_FOLDER = 'OPEN_FOLDER';
 export const BACK_FOLDER = 'BACK_FOLDER';

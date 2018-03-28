@@ -3,32 +3,34 @@ import {
   CLOSE_PROGRAM,
   HIDE_PROGRAM,
   FULLSCREEN_PROGRAM,
-} from 'actions/activeProgram';
-import { UPDATE_PASSWORD_INPUT } from 'actions/password-dialog';
-import {
-  openProgram,
-  closeProgram,
-  hideProgram,
-  fullscreenProgram,
-  updateStateOfOpenProgram,
-} from 'reducers/activeProgram';
+  openProgramReducer,
+  closeProgramReducer,
+  hideProgramReducer,
+  fullscreenProgramReducer,
+  updateStateOfOpenProgramReducer,
+} from 'components/program';
+import { UPDATE_PASSWORD_INPUT } from 'components/password-dialog';
 import { PASSWORD_DIALOG } from 'programs';
 
 export const passwordDialogPrograms = (state = [], action) => {
   switch (action.type) {
     case HIDE_PROGRAM:
-      return hideProgram(state, action, PASSWORD_DIALOG);
+      return hideProgramReducer(state, action, PASSWORD_DIALOG);
     case FULLSCREEN_PROGRAM:
-      return fullscreenProgram(state, action, PASSWORD_DIALOG);
+      return fullscreenProgramReducer(state, action, PASSWORD_DIALOG);
     case OPEN_PROGRAM:
-      return openProgram(state, action, PASSWORD_DIALOG);
+      return openProgramReducer(state, action, PASSWORD_DIALOG);
     case CLOSE_PROGRAM:
-      return closeProgram(state, action, PASSWORD_DIALOG);
+      return closeProgramReducer(state, action, PASSWORD_DIALOG);
     case UPDATE_PASSWORD_INPUT:
-      return updateStateOfOpenProgram(state, action.windowId, openProgram => ({
-        ...openProgram,
-        payload: { ...openProgram.payload, inputText: action.inputText },
-      }));
+      return updateStateOfOpenProgramReducer(
+        state,
+        action.windowId,
+        openProgram => ({
+          ...openProgram,
+          payload: { ...openProgram.payload, inputText: action.inputText },
+        }),
+      );
     default:
       return state;
   }
