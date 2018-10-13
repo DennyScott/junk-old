@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { getDetailedActivePrograms } from 'selectors/activePrograms';
 import { getDesktopContents } from 'selectors/drive';
-import { openProgram } from 'actions/activeProgram';
+import { openProgram } from 'components/program';
 import { storeVariable } from 'actions/variable';
 import Icon from './components/icon';
 import Notepad from 'components/notepad';

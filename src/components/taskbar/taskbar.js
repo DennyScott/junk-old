@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import TaskbarItem from './components/taskbar-item/taskbar-item';
 import MenuTray from './components/menu-tray/menu-tray';
 import { getDetailedActivePrograms } from 'selectors/activePrograms';
-import { hideProgram } from 'actions/activeProgram';
+import { hideProgram } from 'components/program';
 import backgroundImage from './assets/xptaskbar.png';
 import startButton from './assets/xpstart_btn.png';
 
@@ -45,7 +45,7 @@ class Taskbar extends Component {
               this.props.hideProgram(
                 program.id,
                 program.windowId,
-                !program.isShowing
+                !program.isShowing,
               )
             }
           />

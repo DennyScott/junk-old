@@ -1,28 +1,26 @@
 import {
-  OPEN_PROGRAM,
-  CLOSE_PROGRAM,
-  HIDE_PROGRAM,
-  FULLSCREEN_PROGRAM,
-} from 'actions/activeProgram';
-import {
   OPEN_FOLDER,
   UP_FOLDER,
   BACK_FOLDER,
   FORWARD_FOLDER,
 } from 'actions/explorer';
 import {
-  openProgram,
-  closeProgram,
-  hideProgram,
-  fullscreenProgram,
-  updateStateOfOpenProgram,
-} from 'reducers/activeProgram';
+  OPEN_PROGRAM,
+  CLOSE_PROGRAM,
+  HIDE_PROGRAM,
+  FULLSCREEN_PROGRAM,
+  openProgramReducer,
+  closeProgramReducer,
+  hideProgramReducer,
+  fullscreenProgramReducer,
+  updateStateOfOpenProgramReducer,
+} from 'components/program';
 import { EXPLORER } from 'programs';
 
 const constructNewHistory = (openProgram, location) => [
   ...openProgram.payload.previousLocations.slice(
     0,
-    openProgram.payload.currentLocationIndex + 1
+    openProgram.payload.currentLocationIndex + 1,
   ),
   location,
 ];
@@ -31,9 +29,9 @@ const changeFolderLocation = (
   state,
   windowId,
   locationFunc,
-  storeHistory = true
+  storeHistory = true,
 ) => {
-  return updateStateOfOpenProgram(state, windowId, openProgram => ({
+  return updateStateOfOpenProgramReducer(state, windowId, openProgram => ({
     ...openProgram,
     payload: {
       ...openProgram.payload,
@@ -43,7 +41,7 @@ const changeFolderLocation = (
       previousLocations: storeHistory
         ? constructNewHistory(
             openProgram,
-            locationFunc(openProgram.payload.location, openProgram)
+            locationFunc(openProgram.payload.location, openProgram),
           )
         : openProgram.payload.previousLocations,
       location: locationFunc(openProgram.payload.location, openProgram),
@@ -52,7 +50,7 @@ const changeFolderLocation = (
 };
 
 const updateCurrentHistoryIndex = (state, windowId, indexUpdateFunc) => {
-  return updateStateOfOpenProgram(state, windowId, openProgram => ({
+  return updateStateOfOpenProgramReducer(state, windowId, openProgram => ({
     ...openProgram,
     payload: {
       ...openProgram.payload,
@@ -69,7 +67,7 @@ const traverseHistory = (state, windowId, indexUpdateFunc) => {
       openProgram.payload.previousLocations[
         openProgram.payload.currentLocationIndex
       ],
-    false
+    false,
   );
 };
 
@@ -80,44 +78,44 @@ const openFolder = (state, action) => {
     folderLocation =>
       folderLocation.length > 0
         ? `${folderLocation}/${action.folder}`
-        : `${action.folder}`
+        : `${action.folder}`,
   );
-}
+};
 
 const upFolder = (state, action) => {
   return changeFolderLocation(state, action.windowId, folderLocation =>
     folderLocation.substring(
       0,
-      folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : 0
-    )
+      folderLocation.includes('/') ? folderLocation.lastIndexOf('/') : 0,
+    ),
   );
-}
+};
 
 const backFolder = (state, action) => {
   return traverseHistory(state, action.windowId, openProgram =>
-    Math.max(openProgram.payload.currentLocationIndex - 1, 0)
+    Math.max(openProgram.payload.currentLocationIndex - 1, 0),
   );
-}
+};
 
 const forwardFolder = (state, action) => {
   return traverseHistory(state, action.windowId, openProgram =>
     Math.min(
       openProgram.payload.currentLocationIndex + 1,
-      openProgram.payload.previousLocations.length - 1
-    )
+      openProgram.payload.previousLocations.length - 1,
+    ),
   );
-}
+};
 
 export const explorerPrograms = (state = [], action) => {
   switch (action.type) {
     case HIDE_PROGRAM:
-      return hideProgram(state, action, EXPLORER);
+      return hideProgramReducer(state, action, EXPLORER);
     case FULLSCREEN_PROGRAM:
-      return fullscreenProgram(state, action, EXPLORER);
+      return fullscreenProgramReducer(state, action, EXPLORER);
     case OPEN_PROGRAM:
-      return openProgram(state, action, EXPLORER);
+      return openProgramReducer(state, action, EXPLORER);
     case CLOSE_PROGRAM:
-      return closeProgram(state, action, EXPLORER);
+      return closeProgramReducer(state, action, EXPLORER);
     case OPEN_FOLDER:
       return openFolder(state, action);
     case UP_FOLDER:

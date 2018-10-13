@@ -8,7 +8,7 @@ import {
   closeProgram,
   hideProgram,
   fullscreenProgram,
-} from 'actions/activeProgram';
+} from 'components/program';
 import './program-window.css';
 
 class ProgramWindow extends Component {
@@ -25,7 +25,7 @@ class ProgramWindow extends Component {
     this.props.hideProgram(
       this.props.program.id,
       this.props.program.windowId,
-      false
+      false,
     );
   }
 
@@ -33,7 +33,7 @@ class ProgramWindow extends Component {
     this.props.fullscreenProgram(
       this.props.program.id,
       this.props.program.windowId,
-      !this.props.program.isFullscreen
+      !this.props.program.isFullscreen,
     );
   }
 
